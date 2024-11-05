@@ -342,14 +342,20 @@ a {
 }
 
 
-
-
 /* REGULAR IMAGE BUTTONS THAT LOOK LIKE APPS THIS CAN BE USED FOR DESKTOP */ 
 .image-buttons {
     display: flex;
     justify-content: center;
     gap: 40px; /* Adjust gap as needed */
     margin-top: 20px;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100px; /* Set a consistent width */
 }
 
 .image-buttons a {
@@ -367,9 +373,19 @@ a {
     border-radius: 15px; /* Rounds the corners of the images */
 }
 
+.button-label {
+    margin-top: 8px; /* Space between the icon and label */
+    font-size: 0.9rem; /* Smaller font size for the label */
+    color: #ccc; /* Adjust color to be subtle and match the theme */
+    text-align: center;
+    z-index: 10;
+}
+
+
 .image-buttons a:hover {
     transform: scale(1.1); /* Slight zoom on hover */
 }
+
 
 
 
@@ -585,71 +601,86 @@ a {
         font-size: 1rem;
     }
 }
-
-/* Team Section Styles */
-.TeamSection {
-    background-color: #333; /* Dark gray background */
-    color: #fff; /* White text color */
+/* Partners Section Styles */
+.partners {
+    background-color: #222; /* Dark background color to match theme */
+    color: #fff; /* White text color for contrast */
     padding: 50px 20px; /* Padding around the section */
+    height: 100vh; /* Full viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Full viewport height */
-    overflow-y: auto; /* Allow scrolling if content overflows */
 }
 
-.team-container {
+.partner-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack content vertically */
     align-items: center;
-    gap: 40px; /* Space between the two image rows */
-    max-width: 1200px;
+    justify-content: center;
+    max-width: 800px;
     margin: 0 auto;
+    gap: 20px; /* Space between text and image */
 }
 
-.team-member {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 300px;
-}
-
-.team-member img {
-    width: 250px; /* Adjust image width */
+.partner-image img {
+    width: 100%; /* Make image responsive */
+    max-width: 400px; /* Set maximum width for the image */
     height: auto;
-    border-radius: 10px; /* Rounded corners for the images */
+    border-radius: 10px; /* Rounded corners for the image */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
 }
 
-.team-member h3 {
-    margin-top: 15px;
-    font-size: 1.5rem;
-    color: #fff;
+.partner-text {
+    max-width: 600px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    text-align: center; /* Center text alignment */
 }
 
-.team-member p {
-    margin-top: 10px;
-    font-size: 1rem;
+.partner-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.partner-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
     color: #ccc;
+}
+
+.partner-link {
+    text-decoration: none;
+    color: #fff;
+    background-color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.partner-link:hover {
+    background-color: #333; /* Darken the link background on hover */
 }
 
 /* Mobile Optimization */
 @media (max-width: 768px) {
-    .team-container {
-        gap: 20px; /* Reduce gap between rows on smaller screens */
+    .partner-container {
+        text-align: center; /* Center content on mobile */
     }
 
-    .team-member {
-        max-width: 100%;
+    .partner-text h2 {
+        font-size: 2rem;
     }
 
-    .team-member img {
-        width: 80%; /* Make images take up more space on smaller screens */
-        max-width: 300px; /* Limit the maximum width on mobile */
+    .partner-text p {
+        font-size: 1rem;
+    }
+
+    .partner-image img {
+        max-width: 300px; /* Limit maximum width on mobile */
     }
 }
-
-
 
 
 
