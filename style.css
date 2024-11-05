@@ -663,6 +663,20 @@ a {
     text-align: center;
 }
 
+.footer p {
+    margin: 0;
+    padding: 5px;
+}
+
+.highlight {
+    color: black;
+    font-weight: bold;
+    background: linear-gradient(to right, yellow 0%, yellow 100%);
+    background-size: 200% 100%;
+    background-position: -100% 0;
+    animation: highlightAnimation 5s forwards;
+}
+
 /* ALL DEVICE OPTIMAZTIONS */
 /* Mobile Optimization */
 @media (max-width: 768px) {
