@@ -80,7 +80,7 @@ a {
 /* Navbar Full View */
 .navbar.full {
     background-color: transparent; /* Background when full navbar is visible */
-    padding: 20px 50px; /* Adjust padding when full navbar is visible */
+    padding: 20px 75px; /* Adjust padding when full navbar is visible */
     visibility: visible; /* Show the navbar */
     opacity: 1; /* Make the navbar fully visible */
 }
@@ -410,45 +410,71 @@ a {
 }
 
 
+
+
 /* MILLILIFESECTION ///////////////////////////////////////////*/ 
 /* MilliLife Section Styles */
+/* MilliLife Section Styles */
 .MilliLife {
-    background-color: #000000; /* Purple background color */
-    color: #fff; /* White text color */
+    position: relative;
+    background-size: cover; /* Ensures the background covers the section */
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
     padding: 50px 20px; /* Padding around the section */
     height: 100vh; /* Full viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
+/* Dim overlay */
+.MilliLife::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the opacity to dim the background */
+    z-index: 1;
+}
+
+/* Content container */
 .milli-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
-    gap: 40px; /* Space between images and text */
+    z-index: 2; /* Ensure content is above the overlay */
+    text-align: center; /* Center-aligns text and button */
+    padding: 20px;
 }
 
-.milli-images {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px; /* Space between the images and link */
+/* Text content styling */
+.milli-text {
+    max-width: 600px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #fff;
 }
 
-.milli-images img {
-    width: 250px; /* Adjust image width */
-    height: auto;
-    border-radius: 10px; /* Rounded corners for the images */
+.milli-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
+/* Centered Get The App button */
 .milli-link {
+    display: inline-block;
+    margin-top: 20px;
     text-decoration: none;
     color: #fff;
     background-color: #000;
-    padding: 10px 20px;
+    padding: 10px 30px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
@@ -457,27 +483,10 @@ a {
     background-color: #333; /* Darken the link background on hover */
 }
 
-.milli-text {
-    max-width: 500px;
-    font-size: 1.2rem;
-    line-height: 1.5;
-}
-
-.milli-text h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
 /* Mobile Optimization */
 @media (max-width: 768px) {
     .milli-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .milli-images {
-        flex-direction: row;
-        gap: 10px;
+        padding: 20px;
     }
 
     .milli-text h2 {
@@ -487,39 +496,73 @@ a {
     .milli-text p {
         font-size: 1rem;
     }
+
+    .milli-link {
+        padding: 10px 20px; /* Adjust button padding for mobile */
+    }
 }
 /*  ///////////////////////////////////////////*/ 
 
+
+
+
+
+
+
+
 /* Meet The Creator Section Styles */
 .MeetCreator {
-    background-color: #1a1a1a; /* Dark background color */
-    color: #fff; /* White text color */
+    position: relative;
+    background-size: cover; /* Ensures the background covers the section */
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
     padding: 50px 20px; /* Padding around the section */
     height: 100vh; /* Full viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
+/* Dim overlay */
+.MeetCreator::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Adjust the opacity to dim the background */
+    z-index: 1;
+}
+
+/* Container content styles */
 .creator-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
     gap: 40px; /* Space between image and text */
+    z-index: 2; /* Ensure content is above the overlay */
 }
 
+/* Creator image styling */
 .creator-image img {
     width: 350px; /* Adjust image width */
     height: auto;
     border-radius: 10px; /* Rounded corners for the image */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Optional shadow for better contrast */
 }
 
+/* Text content styling */
 .creator-text {
     max-width: 600px;
     font-size: 1.2rem;
     line-height: 1.5;
+    color: #fff;
 }
 
 .creator-text h2 {
@@ -542,6 +585,39 @@ a {
     background-color: #333; /* Darken the link background on hover */
 }
 
+/* Social Links Styling */
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 30px; /* Increased gap for better spacing */
+    justify-content: center; /* Center-aligns links */
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Instagram Link Styling */
+.social-link.instagram img {
+    width: 80px; /* Larger size for Instagram icon */
+    height: auto;
+}
+
+/* LinkedIn Link Styling */
+.social-link.linkedin img {
+    width: 170px; /* Slightly smaller size for LinkedIn icon */
+    height: auto;
+}
+
+.social-link:hover {
+    color: #ccc; /* Lighten color on hover */
+}
+
+
 /* Mobile Optimization */
 @media (max-width: 768px) {
     .creator-container {
@@ -561,11 +637,31 @@ a {
     .creator-text p {
         font-size: 1rem;
     }
+
+    .social-links {
+        justify-content: center; /* Center-aligns social links on mobile */
+    }
+
+    /* Instagram Link Styling for Mobile */
+    .social-link.instagram img {
+        width: 40px; /* Adjusted size for Instagram icon on mobile */
+        height: auto;
+    }
+
+    /* LinkedIn Link Styling for Mobile */
+    .social-link.linkedin img {
+        width: 120px; /* Adjusted size for LinkedIn icon on mobile */
+        height: auto;
+    }
 }
+
+
+
+
 
 /* About BrkrStudios Section Styles */
 .AboutBrkrStudios {
-    background-color: #222; /* Dark background color */
+    background-color: #000; /* Dark background color */
     color: #fff; /* White text color */
     padding: 50px 20px; /* Padding around the section */
     text-align: center; /* Center align text */
@@ -725,6 +821,9 @@ a {
 
 
 
+
+
+/* Footer styles */
 /* Footer styles */
 .footer {
     font-family: 'MyFont';
@@ -732,6 +831,7 @@ a {
     color: #fff;
     padding: 40px 20px;
     text-align: center;
+    position: relative; /* To enable positioning of the image */
 }
 
 .footer p {
@@ -745,8 +845,30 @@ a {
     background: linear-gradient(to right, yellow 0%, yellow 100%);
     background-size: 200% 100%;
     background-position: -100% 0;
-    animation: highlightAnimation 5s forwards;
 }
+
+/* Footer image styling */
+.footer-image {
+    position: absolute;
+    right: 100px; /* Adjust distance from the right edge */
+    bottom: 50px; /* Adjust distance from the bottom */
+    width: 90px; /* Small size for the image */
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .footer-image {
+        position: absolute;
+        right: 20px; /* Adjust distance from the right edge */
+        bottom: 30px; /* Adjust distance from the bottom */
+        width: 40px; /* Small size for the image */
+        height: auto;
+    }
+    }
+
+
+
+
 
 /* ALL DEVICE OPTIMAZTIONS */
 /* Mobile Optimization */
