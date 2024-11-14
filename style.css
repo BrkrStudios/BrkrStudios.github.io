@@ -495,7 +495,7 @@ a {
 }
 
 .app-logo {
-    width: 60px; /* Adjust size of the icon */
+    width: 61px; /* Adjust size of the icon */
     height: auto;
     margin-right: 3px; /* Optional: Extra space between the icon and text */
     border-radius: 15px; /* Rounds the corners of the images */
