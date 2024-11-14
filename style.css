@@ -601,45 +601,71 @@ a {
         font-size: 1rem;
     }
 }
+
+
+
+
+
+
+
 /* Partners Section Styles */
 .partners {
     background-color: #222; /* Dark background color to match theme */
     color: #fff; /* White text color for contrast */
     padding: 50px 20px; /* Padding around the section */
-    height: 100vh; /* Full viewport height */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh; /* Minimum full viewport height */
 }
 
+/* Center the "Our Partners" title */
+.partners h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Flex container for partners, side-by-side on larger screens */
+.partner-container-wrapper {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Each partner container */
 .partner-container {
     display: flex;
     flex-direction: column; /* Stack content vertically */
     align-items: center;
-    justify-content: center;
-    max-width: 800px;
+    max-width: 45%; /* Set a max width for each partner */
     margin: 0 auto;
     gap: 20px; /* Space between text and image */
 }
 
+/* Adjust image styles */
 .partner-image img {
     width: 100%; /* Make image responsive */
-    max-width: 400px; /* Set maximum width for the image */
+    max-width: 300px; /* Set maximum width for the image */
     height: auto;
     border-radius: 10px; /* Rounded corners for the image */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
 }
 
+/* Partner text styles */
 .partner-text {
-    max-width: 600px;
     font-size: 1.2rem;
     line-height: 1.5;
     text-align: center; /* Center text alignment */
 }
 
-.partner-text h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+.partner-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
 
 .partner-text p {
@@ -648,6 +674,7 @@ a {
     color: #ccc;
 }
 
+/* Link button style */
 .partner-link {
     text-decoration: none;
     color: #fff;
@@ -664,21 +691,34 @@ a {
 }
 
 /* Mobile Optimization */
+/* Mobile Optimization */
 @media (max-width: 768px) {
-    .partner-container {
-        text-align: center; /* Center content on mobile */
+    /* Stack partner containers vertically */
+    .partner-container-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px; /* Space between stacked partners */
     }
 
-    .partner-text h2 {
-        font-size: 2rem;
+    /* Adjust each partner container to stay within bounds */
+    .partner-container {
+        max-width: 90%; /* Limit width for mobile screens */
+        padding: 0 20px; /* Add padding to avoid text overflow */
+        box-sizing: border-box;
+    }
+
+    /* Adjust text sizes for mobile */
+    .partner-text h3 {
+        font-size: 1.5rem;
     }
 
     .partner-text p {
         font-size: 1rem;
     }
 
+    /* Limit maximum width on images for mobile */
     .partner-image img {
-        max-width: 300px; /* Limit maximum width on mobile */
+        max-width: 250px;
     }
 }
 
