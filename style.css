@@ -646,7 +646,7 @@ a {
 
     .creator-image img {
         width: 100%; /* Make image full width on mobile */
-        max-width: 400px; /* Limit the maximum width on mobile */
+        max-width: 300px; /* Limit the maximum width on mobile */
     }
 
     .creator-text h2 {
