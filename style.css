@@ -47,52 +47,52 @@ a {
     background-color: #000;
     color: #fff;
     font-size: 1.2rem;
-    border-radius: 10px; /* Adjust for the rounded corner effect */
+    border-radius: 10px;
     text-decoration: none;
-    border: 2px solid #fff; /* Border similar to the one in your image */
-    z-index: 2000; /* Ensures it stays on top */
+    border: 2px solid #fff;
+    z-index: 2000;
     transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 .top-right-contact:hover {
     background-color: #fff;
     color: #000;
-    border: 2px solid #000; /* Change border on hover */
+    border: 2px solid #000;
 }
 
-
+/* Navbar styles */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 50px 100px; /* Adjusted padding to align the content better */
+    padding: 50px 100px;
     display: flex;
-    justify-content: flex-end; /* Align items to the right */
+    justify-content: flex-end;
     align-items: center;
     z-index: 1000;
-    background-color: transparent; /* Transparent header */
-    transition: background-color 0.3s ease, padding 0.3s ease; /* Smooth background color transition */
-    visibility: hidden; /* Initially hidden */
-    opacity: 0; /* Initially transparent */
+    background-color: transparent;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    visibility: hidden;
+    opacity: 0;
 }
 
 /* Navbar Full View */
 .navbar.full {
-    background-color: transparent; /* Background when full navbar is visible */
-    padding: 20px 75px; /* Adjust padding when full navbar is visible */
-    visibility: visible; /* Show the navbar */
-    opacity: 1; /* Make the navbar fully visible */
+    background-color: transparent;
+    padding: 20px 75px;
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Navbar Menu Styling */
 .navbar .nav-menu {
     list-style: none;
     display: flex;
-    gap: 40px; /* Increased gap for spacing between items */
+    gap: 40px;
     padding: 0;
     margin: 0;
-    align-items:  center;
+    align-items: center;
 }
 
 /* Navigation Link Styles */
@@ -100,9 +100,8 @@ a {
     position: relative;
     font-size: 1.1rem;
     color: #fff;
-    gap: 40px; /* Increased gap for spacing between items */
     transition: color 0.3s ease;
-    align-items: center; /* Align items vertically with the button */
+    align-items: center;
 }
 
 /* Underline Effect */
@@ -138,162 +137,30 @@ a {
     font-size: 1.1rem;
     color: #fff;
     font-weight: 500;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Hover Effect */
 .navbar .btnLogin-popup:hover {
-    background-color: #fff; /* Background changes to white on hover */
-    color: #131313; /* Text color changes to dark on hover */
+    background-color: #fff;
+    color: #131313;
 }
-
 
 /* Mobile Menu Styles */
 .menu-icon {
-    display: none; /* Hide the menu icon by default on desktop */
+    display: none;
     cursor: pointer;
     font-size: 3rem;
     color: #fff;
-    position: fixed; /* Changed from absolute to fixed */
+    position: fixed;
     right: 20px;
     top: 20px;
-    z-index: 2000; /* Ensure the icon stays above other elements */
-    background-color: transparent; /* Make sure it's transparent to match the navbar */
-    visibility: hidden; /* Initially hidden */
-    opacity: 0; /* Initially invisible */
-    transition: visibility 0.3s, opacity 0.3s; /* Smooth transition */
+    z-index: 2000;
+    background-color: transparent;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
 }
-
-/* Mobile Menu Setup */
-/* Mobile Menu Setup */
-@media (max-width: 768px) {
-
-    .top-right-contact {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 200px;
-        padding: 15px 20px;
-        background-color: #000;
-        color: #fff;
-        font-size: 1.2rem;
-        border-radius: 10px;
-        text-decoration: none;
-        border: 2px solid #fff;
-        z-index: 2000;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-    }
-
-    .menu-icon {
-        display: block;
-        cursor: pointer;
-        font-size: 3rem;
-        color: #fff;
-        position: fixed;
-        right: 20px;
-        top: 20px;
-        z-index: 2000;
-    }
-
-    .navbar {
-        justify-content: space-between;
-        padding: 20px;
-    }
-
-    .navbar .nav-menu {
-        transform: translateX(100%);
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.85);
-        flex-direction: column;
-        padding: 60px 20px;
-        z-index: 1000;
-        transition: transform 0.3s ease;
-        gap: 70px; /* Increased gap for more spacing */
-    }
-
-    .navbar .nav-menu a {
-        font-size: 2.2rem;
-        padding: 20px 0;
-        text-align: center;
-        color: #fff;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .navbar .nav-menu a:hover {
-        color: #4070F4;
-    }
-
-    .navbar .nav-menu li {
-        position: relative;
-        padding-bottom: 10px; /* Reduced padding to adjust spacing */
-    }
-
-    /* Removing the existing line under the menu items */
-    .navbar .nav-menu li::after {
-        content: none;
-    }
-
-    /* Adding a custom underline with an offset to avoid overlap */
-    .navbar .nav-menu a::after {
-        content: '';
-        position: absolute;
-        left: 50%;
-        bottom: 20px; /* Offset to prevent overlapping with the animated line */
-        transform: translateX(-50%) scaleX(0);
-        width: 100%;
-        height: 2px;
-        background: #fff;
-        transition: transform 0.3s ease;
-    }
-
-    .navbar .nav-menu a:hover::after {
-        transform: translateX(-50%) scaleX(1);
-    }
-
-    .navbar .nav-menu.active {
-        transform: translateX(0);
-    }
-
-    .navbar.scrolled {
-        background-color: rgba(0, 0, 0, 0.9);
-    }
-
-    .menu-icon.scrolled {
-        background-color: rgba(0, 0, 0, 0.9);
-    }
-    
-}
-
-/* Desktop View - Show Full Menu */
-@media (min-width: 769px) {
-    .navbar .nav-menu {
-        position: static;
-        height: auto;
-        transform: none;
-        background-color: transparent;
-        flex-direction: row;
-        justify-content: flex-end;
-    }
-
-    .menu-icon {
-        display: none; /* Hide the menu icon on desktop */
-    }
-
-    .navbar .nav-menu.active {
-        transform: none;
-    }
-}
-
-
 
 /* Hero section styles */
 .hero {
@@ -301,7 +168,7 @@ a {
     background: #000;
     color: #fff;
     text-align: center;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -311,20 +178,11 @@ a {
 
 .container {
     width: 500px;
-    min-height: 50px; /* Adjust this value based on the height of your text */
+    min-height: 50px;
     overflow: hidden;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-}
-
-/* Media query for screens less than 768px */
-@media (max-width: 768px) {
-    .container {
-        width: 100%;
-        margin-top: 0;
-        margin: 0 auto; /* Center the container horizontally */
-    }
 }
 
 .container .text {
@@ -341,12 +199,11 @@ a {
     color: #FFF;
 }
 
-
-/* REGULAR IMAGE BUTTONS THAT LOOK LIKE APPS THIS CAN BE USED FOR DESKTOP */ 
+/* Image buttons */
 .image-buttons {
     display: flex;
     justify-content: center;
-    gap: 40px; /* Adjust gap as needed */
+    gap: 40px;
     margin-top: 20px;
 }
 
@@ -355,13 +212,13 @@ a {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 100px; /* Set a consistent width */
+    width: 100px;
 }
 
 .image-buttons a {
     display: inline-block;
-    width: 100px; /* Adjust width as needed */
-    height: 10ch; /* Adjust height as needed */
+    width: 100px;
+    height: 10ch;
     transition: transform 0.3s ease;
     z-index: 10;
 }
@@ -369,31 +226,23 @@ a {
 .image-buttons img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures images cover the button area */
-    border-radius: 15px; /* Rounds the corners of the images */
+    object-fit: cover;
+    border-radius: 15px;
 }
 
-
 .button-label {
-    margin-top: 8px; /* Space between the icon and label */
-    font-size: 0.9rem; /* Smaller font size for the label */
-    color: #ccc; /* Adjust color to be subtle and match the theme */
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #ccc;
     text-align: center;
     z-index: 10;
 }
 
-
 .image-buttons a:hover {
-    transform: scale(1.1); /* Slight zoom on hover */
+    transform: scale(1.1);
 }
 
-
-
-
-
-
-
-/* Hero background image styles */
+/* Hero background video */
 .video-bg {
     position: absolute;
     top: 0;
@@ -411,27 +260,17 @@ a {
     font-size: 8vw;
     z-index: 2;
     margin: 0;
-
-
 }
 
-
-
-
-
-
-
-/* MILLILIFESECTION ///////////////////////////////////////////*/ 
-/* MilliLife Section Styles */
 /* MilliLife Section Styles */
 .MilliLife {
     position: relative;
-    background-size: cover; /* Ensures the background covers the section */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: #fff;
-    padding: 50px 20px; /* Padding around the section */
-    height: 100vh; /* Full viewport height */
+    padding: 50px 20px;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -446,7 +285,7 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Adjust the opacity to dim the background */
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -458,8 +297,8 @@ a {
     justify-content: center;
     max-width: 800px;
     margin: 0 auto;
-    z-index: 2; /* Ensure content is above the overlay */
-    text-align: center; /* Center-aligns text and button */
+    z-index: 2;
+    text-align: center;
     padding: 20px;
 }
 
@@ -476,68 +315,39 @@ a {
     margin-bottom: 20px;
 }
 
-/* Centered Get The App button */
-
+/* App button */
 .milli-link {
-    display: inline-flex; /* Allows for flex alignment within the button */
-    align-items: center; /* Centers the icon vertically with the text */
-    gap: 10px; /* Space between the icon and the text */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     margin-top: 20px;
     text-decoration: none;
     color: #fff;
     padding: 10px 30px;
     border-radius: 5px;
-    transition: color 0.3s ease; /* Smooth color transition */
+    transition: color 0.3s ease;
 }
 
 .milli-link:hover {
-    color: #ccc; /* Lighten text color on hover */
+    color: #ccc;
 }
 
 .app-logo {
-    width: 61px; /* Adjust size of the icon */
+    width: 61px;
     height: auto;
-    margin-right: 3px; /* Optional: Extra space between the icon and text */
-    border-radius: 15px; /* Rounds the corners of the images */
-
+    margin-right: 3px;
+    border-radius: 15px;
 }
-
-/* Mobile Optimization */
-@media (max-width: 768px) {
-    .milli-container {
-        padding: 20px;
-    }
-
-    .milli-text h2 {
-        font-size: 2rem;
-    }
-
-    .milli-text p {
-        font-size: 1rem;
-    }
-
-    .milli-link {
-        padding: 10px 20px; /* Adjust button padding for mobile */
-    }
-}
-/*  ///////////////////////////////////////////*/ 
-
-
-
-
-
-
-
 
 /* Meet The Creator Section Styles */
 .MeetCreator {
     position: relative;
-    background-size: cover; /* Ensures the background covers the section */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: #fff;
-    padding: 50px 20px; /* Padding around the section */
-    height: 100vh; /* Full viewport height */
+    padding: 50px 20px;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -552,7 +362,7 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Adjust the opacity to dim the background */
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1;
 }
 
@@ -564,16 +374,16 @@ a {
     justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 40px; /* Space between image and text */
-    z-index: 2; /* Ensure content is above the overlay */
+    gap: 40px;
+    z-index: 2;
 }
 
 /* Creator image styling */
 .creator-image img {
-    width: 350px; /* Adjust image width */
+    width: 350px;
     height: auto;
-    border-radius: 10px; /* Rounded corners for the image */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Optional shadow for better contrast */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Text content styling */
@@ -589,27 +399,12 @@ a {
     margin-bottom: 20px;
 }
 
-.creator-link {
-    text-decoration: none;
-    color: #fff;
-    background-color: #000;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    display: inline-block;
-    margin-top: 20px;
-}
-
-.creator-link:hover {
-    background-color: #333; /* Darken the link background on hover */
-}
-
 /* Social Links Styling */
 .social-links {
     margin-top: 20px;
     display: flex;
-    gap: 30px; /* Increased gap for better spacing */
-    justify-content: center; /* Center-aligns links */
+    gap: 30px;
+    justify-content: center;
 }
 
 .social-link {
@@ -622,77 +417,36 @@ a {
 
 /* Instagram Link Styling */
 .social-link.instagram img {
-    width: 80px; /* Larger size for Instagram icon */
+    width: 80px;
     height: auto;
 }
 
 /* LinkedIn Link Styling */
 .social-link.linkedin img {
-    width: 170px; /* Slightly smaller size for LinkedIn icon */
+    width: 170px;
     height: auto;
 }
 
 .social-link:hover {
-    color: #ccc; /* Lighten color on hover */
+    color: #ccc;
 }
-
-
-/* Mobile Optimization */
-@media (max-width: 768px) {
-    .creator-container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .creator-image img {
-        width: 100%; /* Make image full width on mobile */
-        max-width: 300px; /* Limit the maximum width on mobile */
-    }
-
-    .creator-text h2 {
-        font-size: 2rem;
-    }
-
-    .creator-text p {
-        font-size: 1rem;
-    }
-
-    .social-links {
-        justify-content: center; /* Center-aligns social links on mobile */
-    }
-
-    /* Instagram Link Styling for Mobile */
-    .social-link.instagram img {
-        width: 40px; /* Adjusted size for Instagram icon on mobile */
-        height: auto;
-    }
-
-    /* LinkedIn Link Styling for Mobile */
-    .social-link.linkedin img {
-        width: 120px; /* Adjusted size for LinkedIn icon on mobile */
-        height: auto;
-    }
-}
-
-
-
-
 
 /* About BrkrStudios Section Styles */
 .AboutBrkrStudios {
-    background-color: #000; /* Dark background color */
-    color: #fff; /* White text color */
-    padding: 50px 20px; /* Padding around the section */
-    text-align: center; /* Center align text */
-    height: 100vh; /* Full viewport height */
+    background-color: #000;
+    color: #fff;
+    padding: 320px 20px;
+    text-align: center;
+    min-height: 100vh;
+    height: auto; /* Allow height to expand */
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .about-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto 80px auto;
 }
 
 .about-container h2 {
@@ -706,43 +460,242 @@ a {
     color: #ccc;
 }
 
-/* Mobile Optimization */
-@media (max-width: 768px) {
-    .about-container h2 {
-        font-size: 2rem;
-    }
+/* Projects Showcase Styles */
+.projects-showcase {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 220px;
+    padding-bottom: 30px;
+}
 
-    .about-container p {
-        font-size: 1rem;
+.projects-showcase h2 {
+    font-size: 3.5rem;
+    margin-bottom: 60px;
+    text-align: left;
+}
+
+.projects-cards {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.project-card {
+    min-width: 350px;
+    background-color: #111;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    scroll-snap-align: start;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.card-header {
+    padding: 20px;
+    text-align: left;
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.card-image {
+    position: relative;
+    height: 450px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.expand-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.expand-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Project Popup Styles */
+.project-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.project-popup.active {
+    display: flex;
+    opacity: 1;
+}
+
+.popup-content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    color: #000;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.close-popup {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content h2 {
+    padding: 30px;
+    margin: 0;
+    font-size: 2.2rem;
+    background-color: #f5f5f7;
+}
+
+.popup-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-image {
+    width: 100%;
+    height: 300px;
+}
+
+.popup-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.popup-text {
+    padding: 30px;
+    text-align: left;
+}
+
+.popup-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.popup-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.project-link {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.project-link:hover {
+    background-color: #333;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .popup-details {
+        flex-direction: row;
+    }
+    
+    .popup-image {
+        width: 50%;
+        height: auto;
+    }
+    
+    .popup-text {
+        width: 50%;
     }
 }
 
-
-
-
-
-
+@media (max-width: 768px) {
+    .projects-showcase h2 {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    
+    .project-card {
+        min-width: 280px;
+    }
+    
+    .card-image {
+        height: 350px;
+    }
+}
 
 /* Partners Section Styles */
 .partners {
-    background-color: #222; /* Dark background color to match theme */
-    color: #fff; /* White text color for contrast */
-    padding: 50px 20px; /* Padding around the section */
+    background-color: #222;
+    color: #fff;
+    padding: 50px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Minimum full viewport height */
+    min-height: 100vh;
 }
 
-/* Center the "Our Partners" title */
 .partners h2 {
     font-size: 2.5rem;
     margin-bottom: 40px;
     text-align: center;
 }
 
-/* Flex container for partners, side-by-side on larger screens */
 .partner-container-wrapper {
     display: flex;
     gap: 40px;
@@ -752,30 +705,27 @@ a {
     flex-wrap: wrap;
 }
 
-/* Each partner container */
 .partner-container {
     display: flex;
-    flex-direction: column; /* Stack content vertically */
+    flex-direction: column;
     align-items: center;
-    max-width: 45%; /* Set a max width for each partner */
+    max-width: 45%;
     margin: 0 auto;
-    gap: 20px; /* Space between text and image */
+    gap: 20px;
 }
 
-/* Adjust image styles */
 .partner-image img {
-    width: 100%; /* Make image responsive */
-    max-width: 300px; /* Set maximum width for the image */
+    width: 100%;
+    max-width: 300px;
     height: auto;
-    border-radius: 10px; /* Rounded corners for the image */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Partner text styles */
 .partner-text {
     font-size: 1.2rem;
     line-height: 1.5;
-    text-align: center; /* Center text alignment */
+    text-align: center;
 }
 
 .partner-text h3 {
@@ -789,7 +739,6 @@ a {
     color: #ccc;
 }
 
-/* Link button style */
 .partner-link {
     text-decoration: none;
     color: #fff;
@@ -802,47 +751,9 @@ a {
 }
 
 .partner-link:hover {
-    background-color: #333; /* Darken the link background on hover */
+    background-color: #333;
 }
 
-/* Mobile Optimization */
-/* Mobile Optimization */
-@media (max-width: 768px) {
-    /* Stack partner containers vertically */
-    .partner-container-wrapper {
-        flex-direction: column;
-        align-items: center;
-        gap: 40px; /* Space between stacked partners */
-    }
-
-    /* Adjust each partner container to stay within bounds */
-    .partner-container {
-        max-width: 90%; /* Limit width for mobile screens */
-        padding: 0 20px; /* Add padding to avoid text overflow */
-        box-sizing: border-box;
-    }
-
-    /* Adjust text sizes for mobile */
-    .partner-text h3 {
-        font-size: 1.5rem;
-    }
-
-    .partner-text p {
-        font-size: 1rem;
-    }
-
-    /* Limit maximum width on images for mobile */
-    .partner-image img {
-        max-width: 250px;
-    }
-}
-
-
-
-
-
-
-/* Footer styles */
 /* Footer styles */
 .footer {
     font-family: 'MyFont';
@@ -850,7 +761,7 @@ a {
     color: #fff;
     padding: 40px 20px;
     text-align: center;
-    position: relative; /* To enable positioning of the image */
+    position: relative;
 }
 
 .footer p {
@@ -858,191 +769,22 @@ a {
     padding: 5px;
 }
 
-.highlight {
-    color: black;
-    font-weight: bold;
-    background: linear-gradient(to right, yellow 0%, yellow 100%);
-    background-size: 200% 100%;
-    background-position: -100% 0;
-}
-
-/* Footer image styling */
 .footer-image {
     position: absolute;
-    right: 100px; /* Adjust distance from the right edge */
-    bottom: 50px; /* Adjust distance from the bottom */
-    width: 90px; /* Small size for the image */
+    right: 100px;
+    bottom: 50px;
+    width: 90px;
     height: auto;
 }
 
-@media (max-width: 768px) {
-    .footer-image {
-        position: absolute;
-        right: 20px; /* Adjust distance from the right edge */
-        bottom: 30px; /* Adjust distance from the bottom */
-        width: 40px; /* Small size for the image */
-        height: auto;
-    }
-    }
-
-
-
-
-
-/* ALL DEVICE OPTIMAZTIONS */
-/* Mobile Optimization */
-@media (max-width: 768px) {
-    .menu-icon {
-        display: block; /* Show menu icon only on mobile */
-    }
-
-    /* Navbar styles for mobile */
-    .navbar .nav-menu {
-        flex-direction: column;
-        justify-content: center;
-        gap: 10px;
-        padding: 10px 0;
-        width: 100%; /* Full width on mobile */
-        height: 100vh; /* Full height on mobile */
-        transform: translateX(100%); /* Start off-screen to the right */
-    }
-
-    /* Navbar active state for mobile */
-    .navbar .nav-menu.active {
-        transform: translateX(0); /* Slide in from the right, covering the full screen */
-    }
-
-    /* Hero section styles for mobile */
-    .hero {
-        height: 100vh;
-        padding: 0;
-    }
-
-    .hero h1 {
-        font-size: 14vw;
-    }
-
-    .menu-icon {
-        display: block; /* Show the menu icon on mobile */
-    }
-
-    .navbar .nav-menu {
-        transform: translateX(100%); /* Hide the menu offscreen by default on mobile */
-    }
-
-    .navbar .nav-menu.active {
-        transform: translateX(0); /* Slide in the menu when active */
-    }
-
-
-    /* Content section heading font size for mobile */
-    .content-section h2 {
-        font-size: 8vw;
-        margin-bottom: 20px;
-    }
-
-
-    /*MOBILE IMAGE BUTTONS VERY DONW BELOW */
-    .image-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 20px; /* Adjust gap as needed */
-        margin-top: 20px;
-    }
-    
-    .image-buttons a {
-        display: inline-block;
-        width: 70px; /* Adjust width as needed */
-        height: 7ch; /* Adjust height as needed */
-        transition: transform 0.3s ease;
-        z-index: 10;
-    }
-    
-    .image-buttons img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensures images cover the button area */
-        border-radius: 15px; /* Rounds the corners of the images */
-    }
-    
-    .image-buttons a:hover {
-        transform: scale(1.1); /* Slight zoom on hover */
-    }
-
-}
-
-/* Tablet and Desktop Optimization */
-@media (min-width: 769px) {
-    /* Navbar styles for tablet and desktop */
-    .navbar .nav-menu {
-        width: 50%; /* Half screen on larger screens */
-    }
-
-    /* Navbar active state for tablet and desktop */
-    .navbar .nav-menu.active {
-        transform: translateX(0); /* Slide in from the right */
-    }
-
-    .hero h1 {
-        font-size: 6vw;
-    }
-
-
-    .content-section h2 {
-        font-size: 4vw;
-    }
-
-    .navbar .nav-menu {
-        position: static;
-        height: auto;
-        transform: none;
-        background-color: transparent;
-        flex-direction: row;
-        justify-content: flex-end;
-    }
-
-    .menu-icon {
-        display: none; /* Hide the menu icon on desktop */
-    }
-
-    .navbar .nav-menu.active {
-        transform: none;
-    }
-    
-}
-
-
-@media (min-width: 1025px) {
-    .navbar .nav-menu a {
-        font-size: 1.2rem;
-    }
-
-    .hero h1 {
-        font-size: 6vw;
-    }
-
-    .content-section h2 {
-        font-size: 4vw;
-    }
-}
-
-
-@media (min-width: 768px) {
-    .navbar .nav-menu {
-        width: 50%; /* Half screen on larger screens */
-    }
-}
-
-
-
-/* Contact Form Styles CONTACT FORM SECTION */
+/* Contact Form Styles */
 .contact-wrapper {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     width: 500px;
-    height: auto; /* Auto height for better scaling */
+    height: auto;
     background: rgb(0, 0, 0);
     border-radius: 20px;
     backdrop-filter: blur(20px);
@@ -1067,7 +809,7 @@ a {
 .contact-wrapper.closing {
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
-    pointer-events: none; /* Disable interaction during closing */
+    pointer-events: none;
 }
 
 .contact-wrapper .icon-close {
@@ -1162,115 +904,228 @@ a {
     background: #f44070;
 }
 
-/* Styling the checkbox */
-.checkbox-container {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-align: center; /* Center the text */
-    user-select: none;
-    color: #fff;
+/* Jiggle animation */
+@keyframes jiggle {
+    0% { transform: rotate(-3deg) scale(1); }
+    25% { transform: rotate(3deg) scale(1.05); }
+    50% { transform: rotate(-3deg) scale(1); }
+    75% { transform: rotate(3deg) scale(1.05); }
+    100% { transform: rotate(-3deg) scale(1); }
 }
 
-/* Hide the default checkbox */
-.checkbox-container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
+.image-buttons a:hover img {
+    animation: jiggle 0.5s infinite;
 }
 
-
-/* Mobile Optimized Contact Form */
+/* Media Queries */
 @media (max-width: 768px) {
-    
-    .contact-wrapper {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        width: 300px;
-        height: auto;
-        background: rgb(0, 0, 0);
-        border-radius: 20px;
-        backdrop-filter: blur(20px);
-        border: 2px solid rgba(255, 255, 255, .5);
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-        padding: 30px;
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-        z-index: 1000;
-        overflow: hidden;
+    .container {
+        width: 100%;
+        margin-top: 0;
+        margin: 0 auto;
     }
 
-    .contact-wrapper.active {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
+    .top-right-contact {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        padding: 15px 20px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu-icon {
+        display: block;
+        font-size: 3rem;
+        right: 20px;
+        top: 20px;
+    }
+
+    .navbar {
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    .navbar .nav-menu {
+        transform: translateX(100%);
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.85);
+        flex-direction: column;
+        padding: 60px 20px;
+        gap: 70px;
+        width: 100%;
+    }
+
+    .navbar .nav-menu a {
+        font-size: 2.2rem;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .navbar .nav-menu a:hover {
+        color: #4070F4;
+    }
+
+    .navbar .nav-menu li {
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .navbar .nav-menu li::after {
+        content: none;
+    }
+
+    .navbar .nav-menu a::after {
+        left: 50%;
+        bottom: 20px;
+        transform: translateX(-50%) scaleX(0);
+    }
+
+    .navbar .nav-menu a:hover::after {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    .navbar .nav-menu.active {
+        transform: translateX(0);
+    }
+
+    .hero h1 {
+        font-size: 14vw;
+    }
+
+    /* MilliLife section */
+    .milli-container {
+        padding: 20px;
+    }
+
+    .milli-text h2 {
+        font-size: 2rem;
+    }
+
+    .milli-text p {
+        font-size: 1rem;
+    }
+
+    .milli-link {
+        padding: 10px 20px;
+    }
+
+    /* Creator section */
+    .creator-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .creator-image img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .creator-text h2 {
+        font-size: 2rem;
+    }
+
+    .creator-text p {
+        font-size: 1rem;
+    }
+
+    .social-link.instagram img {
+        width: 40px;
+    }
+
+    .social-link.linkedin img {
+        width: 120px;
+    }
+
+    /* About section */
+    .about-container h2 {
+        font-size: 2rem;
+    }
+
+    .about-container p {
+        font-size: 1rem;
+    }
+
+    /* Partners section */
+    .partner-container-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .partner-container {
+        max-width: 90%;
+        padding: 0 20px;
+    }
+
+    .partner-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .partner-text p {
+        font-size: 1rem;
+    }
+
+    .partner-image img {
+        max-width: 250px;
+    }
+
+    /* Footer */
+    .footer-image {
+        right: 20px;
+        bottom: 30px;
+        width: 40px;
+    }
+
+    /* Mobile image buttons */
+    .image-buttons {
+        gap: 20px;
     }
     
-    .contact-wrapper.closing {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 0;
-        pointer-events: none;
+    .image-buttons a {
+        width: 70px;
+        height: 7ch;
+    }
+
+    /* Contact form */
+    .contact-wrapper {
+        width: 300px;
+        padding: 30px;
     }
     
     .contact-wrapper .icon-close {
-        position: absolute;
         top: 15px;
         right: 15px;
         width: 30px;
         height: 30px;
-        background: #131313;
         font-size: 1.5rem;
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        cursor: pointer;
-        z-index: 1001;
     }
     
     .contact-wrapper .form-box h2 {
         font-size: 1.8rem;
-        color: #fff;
         margin-bottom: 20px;
     }
     
     .contact-wrapper .input-box {
-        position: relative;
-        width: 100%;
         margin-bottom: 15px;
-        color: #fff;
     }
     
     .contact-wrapper .input-box label {
-        position: absolute;
-        top: 50%;
         left: 10px;
-        transform: translateY(-50%);
         font-size: 1rem;
-        pointer-events: none;
-        transition: 0.3s ease;
-        color: #aaa;
     }
     
     .contact-wrapper .input-box input,
     .contact-wrapper .input-box textarea {
-        width: 100%;
-        background: transparent;
-        border: none;
-        border-bottom: 2px solid #fff;
         padding: 10px 15px;
         font-size: 1rem;
-        color: #fff;
-        outline: none;
     }
     
     .contact-wrapper .input-box input:focus~label,
@@ -1280,66 +1135,41 @@ a {
         top: -10px;
         left: 10px;
         font-size: 0.8rem;
-        color: #ffffff;
     }
     
     .contact-wrapper .input-box .icon {
-        position: absolute;
         right: 10px;
         font-size: 1.2rem;
-        color: #fff;
-        line-height: 57px;
     }
     
     .contact-wrapper .btn {
-        width: 100%;
         padding: 10px;
-        background: #162938;
-        border: none;
-        border-radius: 5px;
         font-size: 1rem;
-        color: #fff;
-        cursor: pointer;
-        transition: 0.3s ease;
-    }
-    
-    .contact-wrapper .btn:hover {
-        background: #f44070;
-    }
-
-    /* Adjust checkbox container for mobile */
-    .checkbox-container {
-        font-size: 1rem;
-        padding-left: 30px;
-    }
-
-    .checkmark {
-        height: 18px;
-        width: 18px;
-    }
-
-    .checkmark::after {
-        left: 3.5px;
-        top: 1px;
-        width: 5px;
-        height: 8px;
     }
 }
 
+@media (min-width: 769px) {
+    .navbar .nav-menu {
+        position: static;
+        height: auto;
+        transform: none;
+        background-color: transparent;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 50%;
+    }
 
+    .menu-icon {
+        display: none;
+    }
 
-
-/* Jiggle animation FOR THE ICONS ON THE SCREEN*/
-@keyframes jiggle {
-    0% { transform: rotate(-3deg) scale(1); }
-    25% { transform: rotate(3deg) scale(1.05); }
-    50% { transform: rotate(-3deg) scale(1); }
-    75% { transform: rotate(3deg) scale(1.05); }
-    100% { transform: rotate(-3deg) scale(1); }
+    .hero h1 {
+        font-size: 6vw;
+    }
 }
 
-/* Apply jiggle animation on hover */
-.image-buttons a:hover img {
-    animation: jiggle 0.5s infinite;
+@media (min-width: 1025px) {
+    .navbar .nav-menu a {
+        font-size: 1.2rem;
+    }
 }
-

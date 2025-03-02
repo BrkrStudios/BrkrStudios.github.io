@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BrkrStudios</title>
     <link rel="stylesheet" href="style.css"> <!-- Linking to the CSS file -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="scripts.js" defer></script>
 </head>
 <body>
     <a href="javascript:void(0);" class="top-right-contact" onclick="openContactForm()">Contact</a>
@@ -25,7 +28,7 @@
                 <li><a href="#milliLife">MilliLife</a></li>
                 <li><a href="#aboutBrkrStudios">BrkrStudios</a></li>
                 <li><a href="#partners">Partners</a></li>
-                <li><a href="#meetTheCreator">Xander Angulo</a></li>
+                <li><a href="#meetTheCreator">Me</a></li>
                 <button class="btnLogin-popup">Contact</button>
             </ul>
         </nav>
@@ -53,7 +56,7 @@
                 </div>
                 <div class="button-wrapper">
                     <a href="#meetTheCreator"><img src="creator1.jpg" alt="Meet the Creator"></a>
-                    <p class="button-label">Xander Angulo</p>
+                    <p class="button-label">About Me</p>
                 </div>
                 <!-- <div class="button-wrapper">
                     <a href="#photography"><img src="photosicon.jpg" alt="photography"></a>
@@ -87,18 +90,114 @@
 
     
 
-    <section id="aboutBrkrStudios" class="AboutBrkrStudios">
-        <div class="about-container">
-            <h2>About BrkrStudios</h2>
-            <p>
-                BrkrStudios is a creative team delivering high-quality digital solutions. 
-                Specializing in custom app development and professional photography, 
-                we bring ideas to life with user-friendly designs and artistic visuals. 
-                We prioritize a zero-data-collection policy, balancing functionality and style 
-                in every project.
-            </p>
+    <!-- Updated About BrkrStudios Section with Projects Showcase -->
+<section id="aboutBrkrStudios" class="AboutBrkrStudios">
+    <div class="about-container">
+        <h2>About BrkrStudios</h2>
+        <p>
+            BrkrStudios is a creative team delivering high-quality digital solutions. 
+            Specializing in custom app development and professional photography, 
+            we bring ideas to life with user-friendly designs and artistic visuals. 
+            We prioritize a zero-data-collection policy, balancing functionality and style 
+            in every project.
+        </p>
+    </div>
+    
+    <!-- Projects Showcase -->
+    <div class="projects-showcase">
+        <h2>Projects</h2>
+        
+        <div class="projects-cards">
+            <!-- Project Card 1 -->
+            <div class="project-card">
+                <div class="card-header">
+                    <h3>MilliLife App</h3>
+                </div>
+                <div class="card-image">
+                    <img src="project1.jpg" alt="MilliLife App Project">
+                    <button class="expand-btn" data-project="millilife">+</button>
+                </div>
+            </div>
+            
+            <!-- Project Card 2 -->
+            <div class="project-card">
+                <div class="card-header">
+                    <h3>Photography Portfolio</h3>
+                </div>
+                <div class="card-image">
+                    <img src="project2.jpg" alt="Photography Portfolio Project">
+                    <button class="expand-btn" data-project="photography">+</button>
+                </div>
+            </div>
+            
+            <!-- Project Card 3 -->
+            <div class="project-card">
+                <div class="card-header">
+                    <h3>Web Design</h3>
+                </div>
+                <div class="card-image">
+                    <img src="project3.jpg" alt="Web Design Project">
+                    <button class="expand-btn" data-project="webdesign">+</button>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Project Details Popups -->
+<div class="project-popup" id="popup-millilife">
+    <div class="popup-content">
+        <button class="close-popup">×</button>
+        <h2>MilliLife App</h2>
+        <div class="popup-details">
+            <div class="popup-image">
+                <img src="project1-detail.jpg" alt="MilliLife App Details">
+            </div>
+            <div class="popup-text">
+                <h3>Track Every Moment</h3>
+                <p>MilliLife transforms your perception of time by calculating your exact age down to the millisecond. Available now on the App Store.</p>
+                <p>With features like Docked View, Age Skip, countdowns, real-time widgets, and zero data collection, MilliLife helps you track your life's moments with precision.</p>
+                <a href="https://apps.apple.com/us/app/millilife/id6468538447" class="project-link">View on App Store</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="project-popup" id="popup-photography">
+    <div class="popup-content">
+        <button class="close-popup">×</button>
+        <h2>Photography Portfolio</h2>
+        <div class="popup-details">
+            <div class="popup-image">
+                <img src="project2-detail.jpg" alt="Photography Portfolio Details">
+            </div>
+            <div class="popup-text">
+                <h3>Capturing Moments</h3>
+                <p>Our photography services provide high-quality, creative imagery for various events and purposes.</p>
+                <p>We specialize in portrait photography, event coverage, and product photography with a unique artistic perspective.</p>
+                <a href="#" class="project-link">View Gallery</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="project-popup" id="popup-webdesign">
+    <div class="popup-content">
+        <button class="close-popup">×</button>
+        <h2>Web Design</h2>
+        <div class="popup-details">
+            <div class="popup-image">
+                <img src="project3-detail.jpg" alt="Web Design Details">
+            </div>
+            <div class="popup-text">
+                <h3>Modern Web Solutions</h3>
+                <p>We create responsive, user-friendly websites that balance aesthetics with functionality.</p>
+                <p>Our web design process focuses on creating intuitive user experiences while maintaining high performance and accessibility standards.</p>
+                <a href="#" class="project-link">View Portfolio</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -132,7 +231,7 @@
                 <img src="Screenshot 2024-11-13 at 8.17.28 PM.png" alt="Creator Image">
             </div>
             <div class="creator-text">
-                <h2>Meet The Creator</h2>
+                <h2>About Me</h2>
                 <p>
                     I'm Xander Angulo, a passionate developer and photographer,
                     currently studying Computer Science. I specialize in app 
@@ -155,12 +254,12 @@
 
 
     
-<!-- Footer -->
+
 <!-- Footer -->
 <footer class="footer">
     <p>No matter your age, you'll always wish you started younger.</p>
-    <p><span class="highlight">But today is the youngest you'll ever be.</span></p>
-    <p style="margin-bottom: 40px;">© 2025 BrkrStudios. All rights reserved.</p>
+    <p><u> But today is the youngest you'll ever be.</u></p>
+    <p style="margin-bottom: 40px;">© 2025 BrkrStudios & Xander Angulo. All rights reserved.</p>
     <img src="IMG_5457.WEBP" alt="Footer Image" class="footer-image">
 </footer>
     
@@ -200,263 +299,8 @@
                 <input type="text" name="message" autocomplete="off" required>
                 <label>Your Message</label>
             </div>
-            <!-- Checkbox for validation -->
             <button type="submit" class="btn">Submit Form</button>
         </form>
     </div>
 </div>
-
-<script>
-    // Validate the form to ensure the checkbox is checked
-    function validateForm() {
-        const humanCheck = document.getElementById('humanCheck');
-        if (!humanCheck.checked) {
-            alert("Please confirm you're not a robot.");
-            return false; // Prevent form submission
-        }
-        return true; // Allow form submission
-    }
-
-    // Script to open and close contact form
-    function openContactForm() {
-        const contactWrapper = document.querySelector('.contact-wrapper');
-        contactWrapper.style.display = 'flex'; // Ensure the form is visible before starting animation
-        setTimeout(() => {
-            contactWrapper.classList.add('active');
-            contactWrapper.classList.remove('closing');
-        }, 10); // Slight delay to ensure the display is applied before the animation starts
-    }
-
-    document.querySelector('.btnLogin-popup').addEventListener('click', openContactForm);
-
-    document.querySelector('.icon-close').addEventListener('click', function() {
-        const contactWrapper = document.querySelector('.contact-wrapper');
-        contactWrapper.classList.add('closing');
-        contactWrapper.classList.remove('active');
-
-        // Wait for the animation to complete before hiding the element
-        setTimeout(() => {
-            contactWrapper.style.display = 'none';
-        }, 500); // Duration matches the CSS transition duration
-    });
-</script>
-
-<script>
-    function toggleMenu() {
-    const navMenu = document.getElementById('navMenu');
-    navMenu.classList.toggle('active');
-}
-
-// Close the mobile menu when an item is clicked
-const menuItems = document.querySelectorAll('.nav-menu a');
-
-menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-        const navMenu = document.getElementById('navMenu');
-        if (navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-        }
-    });
-});
-</script>
-
-<script>
-    function openContactForm() {
-    const contactWrapper = document.querySelector('.contact-wrapper');
-    contactWrapper.style.display = 'flex'; // Ensure the form is visible before starting animation
-    setTimeout(() => {
-        contactWrapper.classList.add('active');
-        contactWrapper.classList.remove('closing');
-    }, 10); // Slight delay to ensure the display is applied before the animation starts
-}
-
-document.querySelector('.btnLogin-popup').addEventListener('click', openContactForm);
-
-document.querySelector('.icon-close').addEventListener('click', function() {
-    const contactWrapper = document.querySelector('.contact-wrapper');
-    contactWrapper.classList.add('closing');
-    contactWrapper.classList.remove('active');
-
-    // Wait for the animation to complete before hiding the element
-    setTimeout(() => {
-        contactWrapper.style.display = 'none';
-    }, 500); // Duration matches the CSS transition duration
-});
-</script>
-
-<script>
-    window.addEventListener('scroll', function () {
-    const navbar = document.querySelector('.navbar');
-    const menuIcon = document.querySelector('.menu-icon');
-    const heroSection = document.querySelector('.hero');
-    const milliLifeSection = document.getElementById('milliLife');
-    const navMenu = document.querySelector('.nav-menu');
-    const topLeftContact = document.querySelector('.top-right-contact');
-
-    const heroBottom = heroSection.getBoundingClientRect().bottom;
-    const milliLifeTop = milliLifeSection.getBoundingClientRect().top;
-
-    // Show the navbar when the user scrolls past the hero section
-    if (heroBottom <= 0) {
-        navbar.classList.add('full');
-        menuIcon.classList.add('full');
-        topLeftContact.style.visibility = 'hidden';
-        topLeftContact.style.opacity = '0';
-    } else {
-        navbar.classList.remove('full');
-        menuIcon.classList.remove('full');
-        topLeftContact.style.visibility = 'visible';
-        topLeftContact.style.opacity = '1';
-    }
-
-    // Show the menu icon only when the MilliLife section is reached
-    if (milliLifeTop <= 0) {
-        menuIcon.style.visibility = 'visible';
-        menuIcon.style.opacity = '1';
-    } else {
-        menuIcon.style.visibility = 'hidden';
-        menuIcon.style.opacity = '0';
-    }
-
-    // Ensure the menu closes when scrolling back up to the hero section
-    if (heroBottom > 0 && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-    }
-});
-</script>
-
-<script>
-window.addEventListener('scroll', function () {
-    const navbar = document.querySelector('.navbar');
-    const menuIcon = document.querySelector('.menu-icon');
-    const heroSection = document.querySelector('.hero');
-    const milliLifeSection = document.getElementById('milliLife');
-    const navMenu = document.querySelector('.nav-menu');
-
-    const heroBottom = heroSection.getBoundingClientRect().bottom;
-    const milliLifeTop = milliLifeSection.getBoundingClientRect().top;
-
-    // Show the navbar when the user scrolls past the hero section
-    if (heroBottom <= 0) {
-        navbar.classList.add('full');
-        menuIcon.classList.add('full');
-    } else {
-        navbar.classList.remove('full');
-        menuIcon.classList.remove('full');
-    }
-
-    // Show the menu icon only when the MilliLife section is reached
-    if (milliLifeTop <= 0) {
-        menuIcon.style.visibility = 'visible';
-        menuIcon.style.opacity = '1';
-    } else {
-        menuIcon.style.visibility = 'hidden';
-        menuIcon.style.opacity = '0';
-    }
-
-    // Ensure the menu closes when scrolling back up to the hero section
-    if (heroBottom > 0 && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-    }
-});
-
-function toggleMenu() {
-    const navMenu = document.getElementById('navMenu');
-    navMenu.classList.toggle('active');
-}
-</script>
-
-<!-- JavaScript for Menu Toggle and Scroll Effects -->
-<script>
-    function toggleMenu() {
-    document.getElementById('navMenu').classList.toggle('active');
-}
-
-window.addEventListener('scroll', function() {
-    var header = document.querySelector('.header');
-    header.classList.toggle('scrolled', window.scrollY > 50);
-});
-
-</script>
-
-<script>
-    const textElement = document.querySelector(".sec-text");
-    
-    const phrases = [
-        "Check Out Our Apps!",
-        "Report Bugs Here!",
-        "By: Xander Angulo"
-    ];
-    
-    let currentPhraseIndex = 0;
-    let currentCharacterIndex = 0;
-    let isDeleting = false;
-    const typingSpeed = 70; // Speed of typing
-    const erasingSpeed = 40; // Speed of erasing
-    const delayBetweenPhrases = 1500; // Delay before starting to erase
-    
-    function type() {
-        const currentPhrase = phrases[currentPhraseIndex];
-        if (isDeleting) {
-            textElement.textContent = currentPhrase.substring(0, currentCharacterIndex - 1);
-            currentCharacterIndex--;
-        } else {
-            textElement.textContent = currentPhrase.substring(0, currentCharacterIndex + 1);
-            currentCharacterIndex++;
-        }
-    
-        if (!isDeleting && currentCharacterIndex === currentPhrase.length) {
-            isDeleting = true;
-            setTimeout(type, delayBetweenPhrases); // Pause before deleting
-        } else if (isDeleting && currentCharacterIndex === 0) {
-            isDeleting = false;
-            currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length; // Move to next phrase
-            setTimeout(type, typingSpeed); // Start typing the next phrase
-        } else {
-            const speed = isDeleting ? erasingSpeed : typingSpeed;
-            setTimeout(type, speed);
-        }
-    }
-    
-    document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(type, typingSpeed);
-    });
-</script>
-
-<script>
-// JavaScript for toggling the contact form pop-up
-// JavaScript for toggling the contact form pop-up
-document.querySelector('.btnLogin-popup').addEventListener('click', function() {
-    const contactWrapper = document.querySelector('.contact-wrapper');
-    contactWrapper.style.display = 'flex'; // Ensure the form is visible before starting animation
-    setTimeout(() => {
-        contactWrapper.classList.add('active');
-        contactWrapper.classList.remove('closing');
-    }, 10); // Slight delay to ensure the display is applied before the animation starts
-});
-
-document.querySelector('.icon-close').addEventListener('click', function() {
-    const contactWrapper = document.querySelector('.contact-wrapper');
-    contactWrapper.classList.add('closing');
-    contactWrapper.classList.remove('active');
-
-    // Wait for the animation to complete before hiding the element
-    setTimeout(() => {
-        contactWrapper.style.display = 'none';
-    }, 500); // Duration matches the CSS transition duration
-});
-
-// Automatically adjust the height of the textarea based on content
-const textarea = document.querySelector('textarea[name="message"]');
-
-textarea.addEventListener('input', function() {
-    this.style.height = 'auto'; // Reset height to auto to calculate new height
-    this.style.height = (this.scrollHeight) + 'px'; // Set height to match content
-});
-
-
-</script>
-
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
