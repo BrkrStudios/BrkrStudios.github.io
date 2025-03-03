@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Add this to your scripts.js file
+
 
 // Projects popup functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -232,3 +232,574 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+// Space Warp Transition Animation
+document.addEventListener("DOMContentLoaded", () => {
+    // Create canvas for the space warp effect
+    const warpCanvas = document.createElement('canvas');
+    warpCanvas.id = 'warpCanvas';
+    warpCanvas.style.position = 'fixed';
+    warpCanvas.style.top = '0';
+    warpCanvas.style.left = '0';
+    warpCanvas.style.width = '100%';
+    warpCanvas.style.height = '100%';
+    warpCanvas.style.pointerEvents = 'none';
+    warpCanvas.style.zIndex = '999';
+    warpCanvas.style.opacity = '0';
+    warpCanvas.style.transition = 'opacity 0.3s ease';
+    document.body.appendChild(warpCanvas);
+
+    // Set canvas size
+    const resizeCanvas = () => {
+        warpCanvas.width = window.innerWidth;
+        warpCanvas.height = window.innerHeight;
+    };
+    
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Initialize stars
+    const ctx = warpCanvas.getContext('2d');
+    const stars = [];
+    const starCount = 500;
+    
+    for (let i = 0; i < starCount; i++) {
+        stars.push({
+            x: Math.random() * warpCanvas.width,
+            y: Math.random() * warpCanvas.height,
+            z: Math.random() * 1500 + 500,
+            radius: Math.random() * 1.5 + 0.5
+        });
+    }
+
+    // Animation variables
+    let animationFrameId;
+    let warpSpeed = 0;
+    let maxWarpSpeed = 15;
+    let isWarping = false;
+    
+    // Draw stars
+    function drawStars() {
+        ctx.clearRect(0, 0, warpCanvas.width, warpCanvas.height);
+        
+        // Center coordinates
+        const centerX = warpCanvas.width / 2;
+        const centerY = warpCanvas.height / 2;
+        
+        // Draw each star
+        for (let i = 0; i < starCount; i++) {
+            const star = stars[i];
+            
+            // Move star closer (decrease z)
+            star.z -= warpSpeed;
+            
+            // Reset star if it passes the screen
+            if (star.z <= 0) {
+                stars[i].x = Math.random() * warpCanvas.width;
+                stars[i].y = Math.random() * warpCanvas.height;
+                stars[i].z = 1500;
+                stars[i].radius = Math.random() * 1.5 + 0.5;
+            }
+            
+            // Calculate projected position (perspective division)
+            const projectedX = (star.x - centerX) * (600 / star.z) + centerX;
+            const projectedY = (star.y - centerY) * (600 / star.z) + centerY;
+            
+            // Calculate star size based on z distance
+            const projectedRadius = star.radius * (800 / star.z);
+            
+            // Calculate line length based on speed
+            const lineLength = warpSpeed * (400 / star.z);
+            
+            // Calculate previous position for trailing effect
+            const prevX = (star.x - centerX) * (600 / (star.z + warpSpeed * 2)) + centerX;
+            const prevY = (star.y - centerY) * (600 / (star.z + warpSpeed * 2)) + centerY;
+            
+            // Draw star trail
+            if (warpSpeed > 3) {
+                ctx.beginPath();
+                ctx.moveTo(projectedX, projectedY);
+                ctx.lineTo(prevX, prevY);
+                ctx.strokeStyle = `rgba(255, 255, 255, ${Math.min(1, warpSpeed/10)})`; 
+                ctx.lineWidth = projectedRadius * (warpSpeed / 5);
+                ctx.stroke();
+            }
+            
+            // Draw star
+            ctx.beginPath();
+            ctx.arc(projectedX, projectedY, projectedRadius, 0, Math.PI * 2);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+        }
+        
+        // Continue animation
+        if (isWarping) {
+            animationFrameId = requestAnimationFrame(drawStars);
+        }
+    }
+
+    // Handle scroll transition
+    let lastScrollTop = 0;
+    const heroSection = document.querySelector('.hero');
+    const milliLifeSection = document.getElementById('milliLife');
+    let transitionActive = false;
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.scrollY;
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        const viewportHeight = window.innerHeight;
+        
+        // Check if we're transitioning between hero and milliLife section
+        if (!transitionActive && heroBottom > 0 && heroBottom < viewportHeight) {
+            // Calculate transition progress (0 to 1)
+            const transitionProgress = 1 - (heroBottom / viewportHeight);
+            
+            // Update warp speed based on progress
+            if (transitionProgress > 0 && transitionProgress < 1) {
+                if (!isWarping) {
+                    isWarping = true;
+                    warpCanvas.style.opacity = '1';
+                    animationFrameId = requestAnimationFrame(drawStars);
+                }
+                
+                // Accelerate as we near the middle, then decelerate
+                if (transitionProgress < 0.5) {
+                    warpSpeed = maxWarpSpeed * (transitionProgress * 2);
+                } else {
+                    warpSpeed = maxWarpSpeed * ((1 - transitionProgress) * 2);
+                }
+            } else {
+                if (isWarping) {
+                    isWarping = false;
+                    warpSpeed = 0;
+                    warpCanvas.style.opacity = '0';
+                    cancelAnimationFrame(animationFrameId);
+                }
+            }
+        } else if (heroBottom <= 0 || heroBottom >= viewportHeight) {
+            // Outside transition zone
+            if (isWarping) {
+                isWarping = false;
+                warpSpeed = 0;
+                warpCanvas.style.opacity = '0';
+                cancelAnimationFrame(animationFrameId);
+            }
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+    
+    // Add transition for MilliLife section elements
+    const milliContainer = document.querySelector('.milli-container');
+    if (milliContainer) {
+        // Initialize off-screen
+        milliContainer.style.transform = 'translateY(50px)';
+        milliContainer.style.opacity = '0';
+        milliContainer.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
+        
+        // Observe when MilliLife section enters viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        milliContainer.style.transform = 'translateY(0)';
+                        milliContainer.style.opacity = '1';
+                    }, 200); // Slight delay for better effect
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        observer.observe(milliLifeSection);
+    }
+});
+
+
+
+
+
+
+
+
+
+
+// This is for the subtle background dots animation in the BrkrStudios section only
+document.addEventListener("DOMContentLoaded", () => {
+    // Target the BrkrStudios section
+    const aboutBrkrSection = document.getElementById('aboutBrkrStudios');
+    
+    if (aboutBrkrSection) {
+        // Create container for the background dots
+        const dotsContainer = document.createElement('div');
+        dotsContainer.className = 'background-dots-container';
+        aboutBrkrSection.insertBefore(dotsContainer, aboutBrkrSection.firstChild);
+        
+        // Configuration for the dots
+        const config = {
+            numberOfDots: 670,    // Further increased number of dots
+            connectionLines: 22,  // Number of connection lines to create
+            minSize: 2,           // Minimum dot size
+            maxSize: 6,           // Maximum dot size
+            minOpacity: 0.08,     // Minimum opacity
+            maxOpacity: 0.3,      // Maximum opacity
+            minSpeed: 0.15,       // Minimum upward movement speed
+            maxSpeed: 0.7,        // Maximum upward movement speed
+            minSideSpeed: -0.15,  // Minimum sideways movement (negative for left)
+            maxSideSpeed: 0.15    // Maximum sideways movement (positive for right)
+        };
+        
+        // Create and configure all dots
+        const dots = [];
+        for (let i = 0; i < config.numberOfDots; i++) {
+            createDot(dotsContainer, config, dots);
+        }
+        
+        // Create connection lines between some dots
+        createConnectionLines(dotsContainer, dots, config.connectionLines);
+        
+        // Update dot positions on animation frame
+        function updateDots() {
+            // Get the container dimensions - they might change on resize
+            const containerWidth = dotsContainer.offsetWidth;
+            const containerHeight = dotsContainer.offsetHeight;
+            
+            // Update each dot position
+            dots.forEach(dot => {
+                // Update position based on speed
+                dot.y -= dot.speed;
+                dot.x += dot.sideSpeed;
+                
+                // Add slight wave motion to some dots
+                if (dot.hasWave) {
+                    dot.x += Math.sin(Date.now() * 0.001 + dot.waveOffset) * dot.waveAmplitude;
+                }
+                
+                // Check if dot has gone off screen and reset it
+                if (dot.y < -50) {
+                    // Reset to bottom
+                    dot.y = containerHeight + 20;
+                    dot.x = Math.random() * containerWidth;
+                }
+                
+                // Reset if dot goes off sides
+                if (dot.x < -20) {
+                    dot.x = containerWidth + 10;
+                } else if (dot.x > containerWidth + 20) {
+                    dot.x = -10;
+                }
+                
+                // Apply the new position
+                dot.element.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+                
+                // Update any connections this dot has
+                if (dot.connections) {
+                    dot.connections.forEach(connection => {
+                        updateConnection(connection, dot);
+                    });
+                }
+            });
+            
+            // Continue animation
+            requestAnimationFrame(updateDots);
+        }
+        
+        // Start the animation
+        requestAnimationFrame(updateDots);
+        
+        // Handle resize
+        window.addEventListener('resize', () => {
+            // Get new dimensions
+            const containerWidth = dotsContainer.offsetWidth;
+            const containerHeight = dotsContainer.offsetHeight;
+            
+            // Redistribute dots
+            dots.forEach(dot => {
+                dot.x = Math.random() * containerWidth;
+                dot.y = Math.random() * containerHeight;
+                dot.element.style.transform = `translate(${dot.x}px, ${dot.y}px)`;
+            });
+            
+            // Remove old connection lines
+            document.querySelectorAll('.dot-connection').forEach(el => el.remove());
+            
+            // Create new connection lines
+            createConnectionLines(dotsContainer, dots, config.connectionLines);
+        });
+        
+        // Add intersection observer to only animate when visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Make sure dots are visible
+                    dotsContainer.style.opacity = 1;
+                } else {
+                    // Hide dots when section not visible
+                    dotsContainer.style.opacity = 0;
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(aboutBrkrSection);
+    }
+});
+
+// Function to create a single dot
+function createDot(container, config, dotsArray) {
+    // Create dot element
+    const dot = document.createElement('div');
+    dot.className = 'background-dot';
+    
+    // Randomly select size class with distribution
+    const sizeRandom = Math.random();
+    if (sizeRandom < 0.45) {
+        dot.classList.add('small');
+    } else if (sizeRandom < 0.75) {
+        dot.classList.add('medium');
+    } else if (sizeRandom < 0.95) {
+        dot.classList.add('large');
+    } else {
+        // Rare extra large dots
+        dot.classList.add('xlarge');
+    }
+    
+    // Randomly add brightness variation
+    const brightnessRandom = Math.random();
+    if (brightnessRandom < 0.15) {
+        dot.classList.add('bright');
+    } else if (brightnessRandom > 0.8) {
+        dot.classList.add('dim');
+    }
+    
+    // Randomly add color variation to some dots (blue tint)
+    if (Math.random() < 0.2) {
+        if (Math.random() < 0.7) {
+            dot.classList.add('blue-tint');
+        } else {
+            dot.classList.add('blue-bright');
+        }
+    }
+    
+    // Randomly add animations to some dots
+    const animationRandom = Math.random();
+    if (animationRandom < 0.1) {
+        dot.classList.add(Math.random() < 0.5 ? 'pulse' : 'pulse-slow');
+    } else if (animationRandom > 0.9) {
+        dot.classList.add(Math.random() < 0.5 ? 'twinkle-fast' : 'twinkle-slow');
+    }
+    
+    // Create clusters in certain areas rather than uniform distribution
+    let x, y;
+    if (Math.random() < 0.3) {
+        // Create clusters around certain points
+        const clusterX = Math.random() * container.offsetWidth;
+        const clusterY = Math.random() * container.offsetHeight;
+        const offset = 50 + Math.random() * 100;
+        
+        x = clusterX + (Math.random() - 0.5) * offset;
+        y = clusterY + (Math.random() - 0.5) * offset;
+    } else {
+        // Random position
+        x = Math.random() * container.offsetWidth;
+        y = Math.random() * container.offsetHeight;
+    }
+    
+    dot.style.transform = `translate(${x}px, ${y}px)`;
+    
+    // Set random movement speeds
+    const speed = config.minSpeed + Math.random() * (config.maxSpeed - config.minSpeed);
+    const sideSpeed = config.minSideSpeed + Math.random() * (config.maxSideSpeed - config.minSideSpeed);
+    
+    // Add some dots with wave motion
+    const hasWave = Math.random() < 0.2;
+    const waveAmplitude = hasWave ? 0.1 + Math.random() * 0.3 : 0;
+    const waveOffset = Math.random() * Math.PI * 2;
+    
+    // Add dot to container
+    container.appendChild(dot);
+    
+    // Store dot data for animation
+    dotsArray.push({
+        element: dot,
+        x: x,
+        y: y,
+        speed: speed,
+        sideSpeed: sideSpeed,
+        hasWave: hasWave,
+        waveAmplitude: waveAmplitude,
+        waveOffset: waveOffset,
+        connections: []
+    });
+}
+
+// Function to create connection lines between dots
+function createConnectionLines(container, dots, count) {
+    // Only create connections if we have enough dots
+    if (dots.length < 10) return;
+    
+    // Create a limited number of connections
+    for (let i = 0; i < count; i++) {
+        // Pick two random dots that are somewhat close to each other
+        let found = false;
+        let attempts = 0;
+        let startDot, endDot, distance;
+        
+        // Try to find dots that are close enough but not too close
+        while (!found && attempts < 30) {
+            const index1 = Math.floor(Math.random() * dots.length);
+            const index2 = Math.floor(Math.random() * dots.length);
+            
+            if (index1 !== index2) {
+                startDot = dots[index1];
+                endDot = dots[index2];
+                
+                // Calculate distance between dots
+                const dx = startDot.x - endDot.x;
+                const dy = startDot.y - endDot.y;
+                distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Only connect dots that are relatively close (not too far, not too close)
+                if (distance > 50 && distance < 200) {
+                    found = true;
+                }
+            }
+            
+            attempts++;
+        }
+        
+        if (found) {
+            // Create connection line
+            const connection = document.createElement('div');
+            connection.className = 'dot-connection';
+            container.appendChild(connection);
+            
+            // Set initial position and size
+            updateConnection({
+                element: connection,
+                startDot: startDot,
+                endDot: endDot
+            }, startDot);
+            
+            // Add connection to both dots so it gets updated when they move
+            startDot.connections.push({
+                element: connection,
+                startDot: startDot,
+                endDot: endDot
+            });
+        }
+    }
+}
+
+// Update connection line position and angle
+function updateConnection(connection, updateFromDot) {
+    const startDot = connection.startDot;
+    const endDot = connection.endDot;
+    
+    // Calculate distance and angle
+    const dx = endDot.x - startDot.x;
+    const dy = endDot.y - startDot.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const angle = Math.atan2(dy, dx);
+    
+    // Position at startDot and set width to distance
+    connection.element.style.width = `${distance}px`;
+    connection.element.style.left = `${startDot.x}px`;
+    connection.element.style.top = `${startDot.y}px`;
+    connection.element.style.transform = `rotate(${angle}rad)`;
+    
+    // Fade out connections as dots get further apart
+    const opacity = Math.max(0, 0.3 - (distance - 100) / 300);
+    connection.element.style.opacity = `${opacity}`;
+}
+
+
+
+
+
+
+
+// This code creates a slide-in from left animation for the partners section
+document.addEventListener("DOMContentLoaded", () => {
+    // Target the partners section
+    const partnersSection = document.getElementById('partners');
+    
+    if (partnersSection) {
+        // Get all elements that need to be animated
+        const heading = partnersSection.querySelector('h2');
+        const partnerContainer = partnersSection.querySelector('.partner-container');
+        const partnerText = partnersSection.querySelector('.partner-text');
+        const partnerImage = partnersSection.querySelector('.partner-image');
+        
+        // Apply initial styles for off-screen positioning
+        const elementsToAnimate = [heading, partnerContainer, partnerText, partnerImage].filter(el => el);
+        elementsToAnimate.forEach((element, index) => {
+            // Set initial styles - positioned off-screen to the left
+            element.style.opacity = '0';
+            element.style.transform = 'translateX(-100px)';
+            element.style.transition = `opacity 0.8s ease, transform 0.8s ease`;
+            element.style.transitionDelay = `${index * 0.15}s`; // Staggered delay
+        });
+        
+        // Create a variable to track last scroll position
+        let lastScrollTop = 0;
+        
+        // Set up Intersection Observer for the section
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Get current scroll position
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                // Determine scroll direction
+                const scrollingDown = scrollTop > lastScrollTop;
+                lastScrollTop = scrollTop;
+                
+                if (entry.isIntersecting && scrollingDown) {
+                    // Section coming into view while scrolling down
+                    // Animate elements in from the left
+                    elementsToAnimate.forEach(element => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateX(0)';
+                    });
+                } else if (!entry.isIntersecting && !scrollingDown) {
+                    // Section going out of view while scrolling up
+                    // Animate elements back to the left
+                    elementsToAnimate.forEach(element => {
+                        element.style.opacity = '0';
+                        element.style.transform = 'translateX(-100px)';
+                    });
+                }
+            });
+        }, { threshold: 0.2 }); // Trigger when 20% of the section is visible
+        
+        // Start observing the section
+        observer.observe(partnersSection);
+        
+        // Also handle initial state if already in view on page load
+        if (isInViewport(partnersSection)) {
+            elementsToAnimate.forEach(element => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateX(0)';
+            });
+        }
+    }
+});
+
+// Helper function to check if element is in viewport
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}

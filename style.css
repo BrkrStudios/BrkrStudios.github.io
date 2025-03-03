@@ -269,8 +269,8 @@ a {
     background-position: center;
     background-repeat: no-repeat;
     color: #fff;
-    padding: 50px 20px;
-    height: 100vh;
+    padding: 70px 20px; 
+    height: 130vh;      
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1172,4 +1172,124 @@ a {
     .navbar .nav-menu a {
         font-size: 1.2rem;
     }
+}
+
+
+
+
+
+
+
+
+/* CSS for the background dots animation in the BrkrStudios section */
+.background-dots-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Make sure section has relative positioning to contain the animation */
+.AboutBrkrStudios {
+    position: relative;
+}
+
+/* Ensure section content is above the background animation */
+.about-container, 
+.projects-showcase {
+    position: relative;
+    z-index: 5;
+}
+
+/* Individual dot styling */
+.background-dot {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.15); /* Very subtle white */
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+/* Add some variety to dot appearances */
+.background-dot.small {
+    width: 2px;
+    height: 2px;
+}
+
+.background-dot.medium {
+    width: 3px;
+    height: 3px;
+}
+
+.background-dot.large {
+    width: 4px;
+    height: 4px;
+}
+
+.background-dot.xlarge {
+    width: 6px;
+    height: 6px;
+    opacity: 0.15;
+}
+
+.background-dot.bright {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.background-dot.dim {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Add color variations for some dots */
+.background-dot.blue-tint {
+    background-color: rgba(100, 180, 255, 0.15);
+}
+
+.background-dot.blue-bright {
+    background-color: rgba(120, 200, 255, 0.25);
+}
+
+/* Add subtle pulse animation to some dots */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Add twinkle animation to special dots */
+@keyframes twinkle {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0.1; }
+}
+
+.background-dot.pulse {
+    animation: pulse 4s infinite ease-in-out;
+}
+
+/* Different timing for variety */
+.background-dot.pulse-slow {
+    animation: pulse 6s infinite ease-in-out;
+}
+
+.background-dot.twinkle-fast {
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+.background-dot.twinkle-slow {
+    animation: twinkle 4s infinite ease-in-out;
+}
+
+/* Add connection lines between some dots */
+.dot-connection {
+    position: absolute;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.05), rgba(255,255,255,0));
+    height: 1px;
+    transform-origin: 0 0;
+    pointer-events: none;
+    opacity: 0.3;
 }
