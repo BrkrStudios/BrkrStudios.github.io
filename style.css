@@ -126,8 +126,9 @@ a {
 }
 
 /* Button Style */
+/* Button Style - Updated with better spacing */
 .navbar .btnLogin-popup {
-    width: 130px;
+    width: 150px; /* Increased from 130px for more room */
     height: 50px;
     background: transparent;
     border: 2px solid #fff;
@@ -137,6 +138,8 @@ a {
     font-size: 1.1rem;
     color: #fff;
     font-weight: 500;
+    padding: 0 35px; /* Added horizontal padding inside the button */
+    margin-left: 20px; /* Added spacing to separate from the last menu item */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -403,7 +406,7 @@ a {
 .social-links {
     margin-top: 20px;
     display: flex;
-    gap: 30px;
+    gap: 20px;
     justify-content: center;
 }
 
@@ -417,13 +420,18 @@ a {
 
 /* Instagram Link Styling */
 .social-link.instagram img {
-    width: 80px;
+    width: 70px;
     height: auto;
 }
 
 /* LinkedIn Link Styling */
 .social-link.linkedin img {
-    width: 170px;
+    width: 100px;
+    height: auto;
+}
+
+.social-link.resume img {
+    width: 90px;
     height: auto;
 }
 
@@ -1293,3 +1301,40 @@ a {
     pointer-events: none;
     opacity: 0.3;
 }
+
+
+
+
+/* Animated underline styles */
+.animated-underline {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: none;
+  }
+  
+  .animated-underline.animate::after {
+    animation: drawLineAndWave 6s ease forwards;
+  }
+  
+  @keyframes drawLineAndWave {
+    /* Draw the line */
+    0% { width: 0; left: 0; opacity: 1; transform: translateY(0); }
+    20% { width: 100%; left: 0; opacity: 1; transform: translateY(0); }
+    /* Line stays drawn */
+    60% { width: 100%; left: 0; opacity: 1; transform: translateY(0); }
+    /* Wind-like wave effect */
+    70% { width: 100%; left: 0; opacity: 0.9; transform: translateY(-5px) scaleY(0.8); }
+    80% { width: 100%; left: 0; opacity: 0.7; transform: translateY(3px) scaleY(1.2); }
+    90% { width: 100%; left: 0; opacity: 0.4; transform: translateY(-2px) scaleY(0.9); }
+    100% { width: 100%; left: 0; opacity: 0; transform: translateY(1px) scaleY(1); }
+  }

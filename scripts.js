@@ -447,7 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Configuration for the dots
         const config = {
-            numberOfDots: 670,    // Further increased number of dots
+            numberOfDots: 1100,    // Further increased number of dots
             connectionLines: 22,  // Number of connection lines to create
             minSize: 2,           // Minimum dot size
             maxSize: 6,           // Maximum dot size
@@ -726,28 +726,55 @@ function updateConnection(connection, updateFromDot) {
 
 
 
-
-
-// This code creates a slide-in from left animation for the partners section
+// This code creates a slide-in from left animation for all sections after MilliLife
 document.addEventListener("DOMContentLoaded", () => {
-    // Target the partners section
-    const partnersSection = document.getElementById('partners');
+    // Target all sections after MilliLife
+    const sections = [
+        document.getElementById('aboutBrkrStudios'),
+        document.getElementById('partners'),
+        document.getElementById('meetTheCreator')
+    ];
     
-    if (partnersSection) {
-        // Get all elements that need to be animated
-        const heading = partnersSection.querySelector('h2');
-        const partnerContainer = partnersSection.querySelector('.partner-container');
-        const partnerText = partnersSection.querySelector('.partner-text');
-        const partnerImage = partnersSection.querySelector('.partner-image');
+    sections.forEach(section => {
+        if (!section) return;
+        
+        // Get main elements within each section to animate
+        const elements = [];
+        
+        // For BrkrStudios section
+        if (section.id === 'aboutBrkrStudios') {
+            elements.push(
+                section.querySelector('.about-container'),
+                section.querySelector('.projects-showcase h2'),
+                ...Array.from(section.querySelectorAll('.project-card'))
+            );
+        }
+        // For Partners section 
+        else if (section.id === 'partners') {
+            elements.push(
+                section.querySelector('h2'),
+                section.querySelector('.partner-container'),
+                section.querySelector('.partner-text'),
+                section.querySelector('.partner-image')
+            );
+        }
+        // For Meet the Creator section
+        else if (section.id === 'meetTheCreator') {
+            elements.push(
+                section.querySelector('.creator-image'),
+                section.querySelector('.creator-text')
+            );
+        }
+        
+        // Filter out any null elements
+        const elementsToAnimate = elements.filter(el => el);
         
         // Apply initial styles for off-screen positioning
-        const elementsToAnimate = [heading, partnerContainer, partnerText, partnerImage].filter(el => el);
         elementsToAnimate.forEach((element, index) => {
-            // Set initial styles - positioned off-screen to the left
             element.style.opacity = '0';
             element.style.transform = 'translateX(-100px)';
             element.style.transition = `opacity 0.8s ease, transform 0.8s ease`;
-            element.style.transitionDelay = `${index * 0.15}s`; // Staggered delay
+            element.style.transitionDelay = `${index * 0.1}s`; // Slightly faster staggered delay
         });
         
         // Create a variable to track last scroll position
@@ -764,36 +791,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 if (entry.isIntersecting && scrollingDown) {
                     // Section coming into view while scrolling down
-                    // Animate elements in from the left
                     elementsToAnimate.forEach(element => {
                         element.style.opacity = '1';
                         element.style.transform = 'translateX(0)';
                     });
                 } else if (!entry.isIntersecting && !scrollingDown) {
                     // Section going out of view while scrolling up
-                    // Animate elements back to the left
                     elementsToAnimate.forEach(element => {
                         element.style.opacity = '0';
                         element.style.transform = 'translateX(-100px)';
                     });
                 }
             });
-        }, { threshold: 0.2 }); // Trigger when 20% of the section is visible
+        }, { threshold: 0.15 }); // Trigger when 15% of the section is visible
         
         // Start observing the section
-        observer.observe(partnersSection);
+        observer.observe(section);
         
-        // Also handle initial state if already in view on page load
-        if (isInViewport(partnersSection)) {
+        // Handle initial state if already in view on page load
+        if (isInViewport(section)) {
             elementsToAnimate.forEach(element => {
                 element.style.opacity = '1';
                 element.style.transform = 'translateX(0)';
             });
         }
-    }
+    });
 });
 
-// Helper function to check if element is in viewport
+// Helper function to check if element is in viewport (unchanged)
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
@@ -803,3 +828,48 @@ function isInViewport(element) {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 }
+
+
+
+
+
+
+
+// Add this to your scripts.js file
+document.addEventListener("DOMContentLoaded", () => {
+    // Target the underlined text in the footer
+    const underlinedText = document.querySelector(".footer p u");
+    
+    if (underlinedText) {
+      // Replace <u> with a span that we'll animate
+      const textContent = underlinedText.textContent;
+      const parentElement = underlinedText.parentElement;
+      
+      const newSpan = document.createElement("span");
+      newSpan.textContent = textContent;
+      newSpan.className = "animated-underline";
+      
+      parentElement.replaceChild(newSpan, underlinedText);
+      
+      // Set up intersection observer to trigger animation when in view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            newSpan.classList.add("animate");
+            // Remove class after animation completes to allow it to replay
+            setTimeout(() => {
+              newSpan.classList.remove("animate");
+            }, 5000); // 5 seconds total for the animation
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      observer.observe(newSpan);
+    }
+
+    
+  });
+
+  
+
+
