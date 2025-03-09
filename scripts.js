@@ -52,6 +52,10 @@ function type() {
     }
 }
 
+
+
+
+
 // Variables for typing animation
 const phrases = [
     "Check Out Our Apps!",
@@ -115,6 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
+
+
+
     // Scroll event handling for navbar and menu visibility
     window.addEventListener('scroll', function () {
         const navbar = document.querySelector('.navbar');
@@ -167,6 +174,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
+
+
 
 
 
@@ -233,6 +244,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Add this to your existing project popup functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all project cards
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    // Add hover animation to project cards
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.classList.add('hover-animate');
+            
+            // Get the expand button inside this card
+            const expandBtn = this.querySelector('.expand-btn');
+            if (expandBtn) {
+                expandBtn.classList.add('btn-pulse');
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.classList.remove('hover-animate');
+            
+            // Remove animation from expand button
+            const expandBtn = this.querySelector('.expand-btn');
+            if (expandBtn) {
+                expandBtn.classList.remove('btn-pulse');
+            }
+        });
+    });
+});
+
+
+
 
 
 
@@ -255,8 +297,9 @@ document.addEventListener("DOMContentLoaded", () => {
     warpCanvas.style.width = '100%';
     warpCanvas.style.height = '100%';
     warpCanvas.style.pointerEvents = 'none';
-    warpCanvas.style.zIndex = '999';
-    warpCanvas.style.opacity = '0';
+    warpCanvas.style.zIndex = '5'; // Lower z-index to ensure it doesn't obscure content
+    // Start with canvas visible
+    warpCanvas.style.opacity = '1';
     warpCanvas.style.transition = 'opacity 0.3s ease';
     document.body.appendChild(warpCanvas);
 
@@ -285,9 +328,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Animation variables
     let animationFrameId;
-    let warpSpeed = 0;
+    let warpSpeed = 2; // Initial warp speed for hero section
     let maxWarpSpeed = 15;
-    let isWarping = false;
+    let isWarping = true; // Start animation immediately
     
     // Draw stars
     function drawStars() {
@@ -319,9 +362,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // Calculate star size based on z distance
             const projectedRadius = star.radius * (800 / star.z);
             
-            // Calculate line length based on speed
-            const lineLength = warpSpeed * (400 / star.z);
-            
             // Calculate previous position for trailing effect
             const prevX = (star.x - centerX) * (600 / (star.z + warpSpeed * 2)) + centerX;
             const prevY = (star.y - centerY) * (600 / (star.z + warpSpeed * 2)) + centerY;
@@ -349,46 +389,73 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Start animation immediately
+    animationFrameId = requestAnimationFrame(drawStars);
+
     // Handle scroll transition
     let lastScrollTop = 0;
     const heroSection = document.querySelector('.hero');
     const milliLifeSection = document.getElementById('milliLife');
-    let transitionActive = false;
     
     window.addEventListener('scroll', function() {
         const scrollTop = window.scrollY;
         const heroBottom = heroSection.getBoundingClientRect().bottom;
         const viewportHeight = window.innerHeight;
         
+        // Determine if we're scrolling up or down
+        const scrollingDown = scrollTop > lastScrollTop;
+        
+        // Check if we're still in the hero section
+        if (heroBottom >= viewportHeight) {
+            // We're fully in the hero section - maintain a steady warp speed
+            warpSpeed = 5; // Constant speed for hero section
+            
+            // Make sure animation is running and canvas is visible
+            if (!isWarping) {
+                isWarping = true;
+                warpCanvas.style.opacity = '1';
+                animationFrameId = requestAnimationFrame(drawStars);
+            } else {
+                // Force full opacity when in hero section
+                warpCanvas.style.opacity = '1';
+            }
+        }
         // Check if we're transitioning between hero and milliLife section
-        if (!transitionActive && heroBottom > 0 && heroBottom < viewportHeight) {
+        else if (heroBottom > 0 && heroBottom < viewportHeight) {
             // Calculate transition progress (0 to 1)
             const transitionProgress = 1 - (heroBottom / viewportHeight);
             
-            // Update warp speed based on progress
-            if (transitionProgress > 0 && transitionProgress < 1) {
-                if (!isWarping) {
-                    isWarping = true;
-                    warpCanvas.style.opacity = '1';
-                    animationFrameId = requestAnimationFrame(drawStars);
-                }
-                
-                // Accelerate as we near the middle, then decelerate
-                if (transitionProgress < 0.5) {
-                    warpSpeed = maxWarpSpeed * (transitionProgress * 2);
-                } else {
-                    warpSpeed = maxWarpSpeed * ((1 - transitionProgress) * 2);
-                }
-            } else {
-                if (isWarping) {
-                    isWarping = false;
-                    warpSpeed = 0;
-                    warpCanvas.style.opacity = '0';
-                    cancelAnimationFrame(animationFrameId);
-                }
+            // Restart animation if we're scrolling back up into the transition zone
+            if (!isWarping && !scrollingDown) {
+                isWarping = true;
+                warpCanvas.style.opacity = '1';
+                animationFrameId = requestAnimationFrame(drawStars);
             }
-        } else if (heroBottom <= 0 || heroBottom >= viewportHeight) {
-            // Outside transition zone
+            
+            // Update warp speed based on progress
+            if (transitionProgress < 0.5) {
+                // First half of transition - speed up
+                warpSpeed = 5 + (maxWarpSpeed - 5) * (transitionProgress * 2);
+            } else {
+                // Second half of transition - slow down to zero
+                warpSpeed = maxWarpSpeed * ((1 - transitionProgress) * 2);
+            }
+            
+            // Handle opacity based on transition progress
+            if (transitionProgress > 0.8) {
+                // Fading out when scrolling down near end of transition
+                warpCanvas.style.opacity = String(1 - (transitionProgress - 0.8) * 5);
+            } else if (transitionProgress < 0.2 && !scrollingDown) {
+                // Fading in when scrolling back up at beginning of transition
+                warpCanvas.style.opacity = String(transitionProgress * 5);
+            } else {
+                // Full opacity in middle of transition
+                warpCanvas.style.opacity = '1';
+            }
+        } 
+        // We've scrolled past the hero section
+        else if (heroBottom <= 0) {
+            // Outside transition zone, stop the animation
             if (isWarping) {
                 isWarping = false;
                 warpSpeed = 0;
@@ -553,6 +620,9 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(aboutBrkrSection);
     }
 });
+
+
+
 
 // Function to create a single dot
 function createDot(container, config, dotsArray) {
@@ -835,7 +905,7 @@ function isInViewport(element) {
 
 
 
-// Add this to your scripts.js file
+// Update the footer underline animation
 document.addEventListener("DOMContentLoaded", () => {
     // Target the underlined text in the footer
     const underlinedText = document.querySelector(".footer p u");
@@ -851,23 +921,19 @@ document.addEventListener("DOMContentLoaded", () => {
       
       parentElement.replaceChild(newSpan, underlinedText);
       
-      // Set up intersection observer to trigger animation when in view
+      // Set up intersection observer to trigger continuous animation
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             newSpan.classList.add("animate");
-            // Remove class after animation completes to allow it to replay
-            setTimeout(() => {
-              newSpan.classList.remove("animate");
-            }, 5000); // 5 seconds total for the animation
+          } else {
+            newSpan.classList.remove("animate");
           }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.2 });
       
       observer.observe(newSpan);
     }
-
-    
   });
 
   
