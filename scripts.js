@@ -1292,3 +1292,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add transition for modal image
     modalImg.style.transition = 'opacity 0.2s ease';
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
