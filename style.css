@@ -300,6 +300,7 @@ a {
     align-items: center;
     justify-content: center;
     max-width: 800px;
+    
     margin: 0 auto;
     z-index: 2;
     text-align: center;
@@ -324,6 +325,7 @@ a {
     position: relative;
     display: inline-block;
     margin-top: 20px;
+    border-radius: 30px;
   }
   
   .milli-link {
@@ -335,7 +337,7 @@ a {
     color: #fff;
     
     padding: 12px 30px;
-    border-radius: 15px;
+    border-radius: 30px;
     transition: all 0.3s ease;
     z-index: 2;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -367,38 +369,46 @@ a {
     right: -5px;
     bottom: -5px;
     border: 2px solid #4070F4;
-    border-radius: 20px;
+    border-radius: 30px;
     z-index: 1;
     opacity: 0.8;
     box-shadow: 0 0 10px rgba(64, 112, 244, 0.5);
     animation: pulseBox 2s infinite, glowBox 2s infinite, rotateGradient 4s linear infinite;
   }
   
-  /* Pulse animation */
-  @keyframes pulseBox {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.03);
-    }
-    100% {
-      transform: scale(1);
-    }
+  /* Moving gradient animation */
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  /* Glow animation */
-  @keyframes glowBox {
-    0% {
-      box-shadow: 0 0 10px rgba(64, 112, 244, 0.5);
-    }
-    50% {
-      box-shadow: 0 0 20px rgba(64, 112, 244, 0.8);
-    }
-    100% {
-      box-shadow: 0 0 10px rgba(64, 112, 244, 0.5);
-    }
+  50% {
+    background-position: 100% 50%;
   }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Add a subtle pulse effect to the container */
+@keyframes containerPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(64, 112, 244, 0.5);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(64, 112, 244, 0.7);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(64, 112, 244, 0.5);
+  }
+}
+
+/* Apply the pulse animation */
+.milli-link-container {
+  animation: gradientBorder 6s ease infinite, containerPulse 3s ease-in-out infinite;
+}
 
 
 
@@ -501,22 +511,405 @@ a {
     color: #ccc;
 }
 
-/* About BrkrStudios Section Styles */
-.AboutBrkrStudios {
+
+
+/* Extended Me Section Styles */
+.extended-sections {
     background-color: #000;
     color: #fff;
-    padding: 320px 20px;
+}
+
+.me-subsection {
+    padding: 120px 20px;
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.subsection-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.me-subsection h2 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+}
+
+.me-subsection h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100px;
+    height: 4px;
+    background: #4070F4;
+    border-radius: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Portfolio Styles */
+.portfolio-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.portfolio-item {
+    background-color: #111;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.portfolio-info {
+    padding: 20px;
+}
+
+.portfolio-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.portfolio-info p {
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.portfolio-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4070F4;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.portfolio-link:hover {
+    background-color: #3060d0;
+}
+
+
+/* Photography Section */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.photo-item {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.photo-item:hover {
+    transform: scale(1.03);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+.photo-item:hover img {
+    filter: brightness(1.1);
+}
+
+/* View More Button Styling */
+.view-more-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.view-more-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #4070F4;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.view-more-btn:hover {
+    background-color: #3060d0;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.arrow-icon {
+    display: inline-block;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.view-more-btn:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+/* Instagram Section */
+.instagram-section {
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.insta-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.insta-image {
+    flex: 0 0 30%;
+}
+
+.insta-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.insta-arrow {
+    flex: 0 0 10%;
+    animation: arrowPulse 2s infinite;
+}
+
+@keyframes arrowPulse {
+    0% {transform: translateX(0);}
+    50% {transform: translateX(10px);}
+    100% {transform: translateX(0);}
+}
+
+.insta-text {
+    flex: 0 0 50%;
+}
+
+.insta-text h2 {
+    font-size: 2.5rem;
+}
+
+.insta-text p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.insta-link {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: white;
+    color: #3897f0;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.insta-link:hover {
+    transform: scale(1.05);
+}
+
+/* Resume Section */
+.resume-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.resume-image {
+    flex: 0 0 40%;
+}
+
+.resume-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(64, 112, 244, 0.3);
+    transform: rotate(-3deg);
+    transition: transform 0.3s ease;
+}
+
+.resume-image:hover img {
+    transform: rotate(0deg);
+}
+
+.resume-text {
+    flex: 0 0 50%;
+}
+
+.resume-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #4070F4;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.resume-button:hover {
+    background-color: #3060d0;
+    transform: translateY(-5px);
+}
+
+/* LinkedIn Section */
+.linkedin-section {
+    background-color: #0077B5;
+    color: white;
+}
+
+.linkedin-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.linkedin-image {
+    flex: 0 0 40%;
+}
+
+.linkedin-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.linkedin-text {
+    flex: 0 0 50%;
+}
+
+.linkedin-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: white;
+    color: #0077B5;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.linkedin-button:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-5px);
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 992px) {
+    .insta-content, .resume-content, .linkedin-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .insta-image, .resume-image, .linkedin-image {
+        margin-bottom: 30px;
+    }
+    
+    .insta-arrow {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .me-subsection {
+        padding: 80px 20px;
+    }
+    
+    .me-subsection h2 {
+        font-size: 2.2rem;
+    }
+    
+    .portfolio-items, .photo-gallery {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Updated AboutBrkrStudios Section Styles */
+.AboutBrkrStudios {
+    position: relative;
+    background-color: #000;
+    color: #fff;
+    padding: 120px 20px; /* Reduced padding from 320px to 120px */
     text-align: center;
     min-height: 100vh;
-    height: auto; /* Allow height to expand */
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Added to center content vertically */
 }
 
 .about-container {
     max-width: 800px;
-    margin: 0 auto 80px auto;
+    margin: 0 auto;
 }
 
 .about-container h2 {
@@ -530,194 +923,6 @@ a {
     color: #ccc;
 }
 
-/* Projects Showcase Styles */
-.projects-showcase {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-top: 220px;
-    padding-bottom: 30px;
-}
-
-.projects-showcase h2 {
-    font-size: 3.5rem;
-    margin-bottom: 60px;
-    text-align: left;
-    
-}
-
-.projects-cards {
-    display: flex;
-    gap: 30px;
-    overflow-x: auto;
-    padding: 20px 0;
-    scroll-snap-type: x mandatory;
-    justify-content: center;
-}
-
-.project-card {
-    min-width: 350px;
-    background-color: #111;
-    border-radius: 20px;
-    overflow: hidden;
-    transition: transform 0.3s;
-    scroll-snap-align: start;
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-}
-
-.card-header {
-    padding: 20px;
-    text-align: left;
-}
-
-.card-header h3 {
-    font-size: 1.5rem;
-    margin: 0;
-}
-
-.card-image {
-    position: relative;
-    height: 450px;
-    overflow: hidden;
-}
-
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.expand-btn {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(16, 16, 16, 0.3);
-    backdrop-filter: blur(5px);
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.expand-btn:hover {
-    background-color: rgba(75, 111, 236, 0.5);
-}
-
-/* Project Popup Styles */
-.project-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    opacity: 0;
-    transition: opacity 0.4s;
-}
-
-.project-popup.active {
-    display: flex;
-    opacity: 1;
-}
-
-.popup-content {
-    position: relative;
-    width: 90%;
-    max-width: 1000px;
-    background-color: #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    color: #000;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.close-popup {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: #333;
-    color: #fff;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.popup-content h2 {
-    padding: 30px;
-    margin: 0;
-    font-size: 2.2rem;
-    background-color: #f5f5f7;
-}
-
-.popup-details {
-    display: flex;
-    flex-direction: column;
-}
-
-.popup-image {
-    width: 100%;
-    height: 300px;
-}
-
-.popup-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.popup-text {
-    padding: 30px;
-    text-align: left;
-}
-
-.popup-text h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-.popup-text p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.project-link {
-    display: inline-block;
-    background-color: #000;
-    color: #fff;
-    padding: 12px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.project-link:hover {
-    background-color: #333;
-}
 
 /* Responsive Design */
 @media (min-width: 768px) {
@@ -756,6 +961,7 @@ a {
     color: #fff;
     padding: 50px 20px;
     display: flex;
+    
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -816,7 +1022,7 @@ a {
     color: #fff;
     background-color: #000;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 30px;
     transition: background-color 0.3s ease;
     display: inline-block;
     margin-top: 20px;

@@ -795,109 +795,144 @@ function updateConnection(connection, updateFromDot) {
 
 
 
-
-// This code creates a slide-in from left animation for all sections after MilliLife
-document.addEventListener("DOMContentLoaded", () => {
-    // Target all sections after MilliLife
-    const sections = [
-        document.getElementById('aboutBrkrStudios'),
-        document.getElementById('partners'),
-        document.getElementById('meetTheCreator')
-    ];
+// // This code creates a one-time slide-in from left animation for all sections
+// document.addEventListener("DOMContentLoaded", () => {
+//     // Target all sections to animate
+//     const sections = [
+//         document.getElementById('aboutBrkrStudios'),
+//         document.getElementById('partners'),
+//         document.getElementById('meetTheCreator'),
+//         document.getElementById('portfolio-section'),
+//         document.getElementById('photography-section'),
+//         document.getElementById('instagram-section'),
+//         document.getElementById('resume-section'),
+//         document.getElementById('linkedin-section')
+//     ];
     
-    sections.forEach(section => {
-        if (!section) return;
+//     // Create a Set to keep track of which sections have been animated
+//     const animatedSections = new Set();
+    
+//     sections.forEach(section => {
+//         if (!section) return;
         
-        // Get main elements within each section to animate
-        const elements = [];
+//         // Get main elements within each section to animate
+//         const elements = [];
         
-        // For BrkrStudios section
-        if (section.id === 'aboutBrkrStudios') {
-            elements.push(
-                section.querySelector('.about-container'),
-                section.querySelector('.projects-showcase h2'),
-                ...Array.from(section.querySelectorAll('.project-card'))
-            );
-        }
-        // For Partners section 
-        else if (section.id === 'partners') {
-            elements.push(
-                section.querySelector('h2'),
-                section.querySelector('.partner-container'),
-                section.querySelector('.partner-text'),
-                section.querySelector('.partner-image')
-            );
-        }
-        // For Meet the Creator section
-        else if (section.id === 'meetTheCreator') {
-            elements.push(
-                section.querySelector('.creator-image'),
-                section.querySelector('.creator-text')
-            );
-        }
+//         // For BrkrStudios section
+//         if (section.id === 'aboutBrkrStudios') {
+//             elements.push(
+//                 section.querySelector('.about-container'),
+//                 section.querySelector('.projects-showcase h2'),
+//                 ...Array.from(section.querySelectorAll('.project-card'))
+//             );
+//         }
+//         // For Partners section 
+//         else if (section.id === 'partners') {
+//             elements.push(
+//                 section.querySelector('h2'),
+//                 section.querySelector('.partner-container'),
+//                 section.querySelector('.partner-text'),
+//                 section.querySelector('.partner-image')
+//             );
+//         }
+//         // For Meet the Creator section
+//         else if (section.id === 'meetTheCreator') {
+//             elements.push(
+//                 section.querySelector('.creator-image'),
+//                 section.querySelector('.creator-text')
+//             );
+//         }
+//         // For Portfolio section
+//         else if (section.id === 'portfolio-section') {
+//             elements.push(
+//                 section.querySelector('h2'),
+//                 ...Array.from(section.querySelectorAll('.portfolio-item'))
+//             );
+//         }
+//         // For Photography section
+//         else if (section.id === 'photography-section') {
+//             elements.push(
+//                 section.querySelector('h2'),
+//                 ...Array.from(section.querySelectorAll('.photo-item'))
+//             );
+//         }
+//         // For Instagram section
+//         else if (section.id === 'instagram-section') {
+//             elements.push(
+//                 section.querySelector('.insta-content')
+//             );
+//         }
+//         // For Resume section
+//         else if (section.id === 'resume-section') {
+//             elements.push(
+//                 section.querySelector('.resume-content')
+//             );
+//         }
+//         // For LinkedIn section
+//         else if (section.id === 'linkedin-section') {
+//             elements.push(
+//                 section.querySelector('.linkedin-content')
+//             );
+//         }
         
-        // Filter out any null elements
-        const elementsToAnimate = elements.filter(el => el);
+//         // Filter out any null elements
+//         const elementsToAnimate = elements.filter(el => el);
         
-        // Apply initial styles for off-screen positioning
-        elementsToAnimate.forEach((element, index) => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateX(-100px)';
-            element.style.transition = `opacity 0.8s ease, transform 0.8s ease`;
-            element.style.transitionDelay = `${index * 0.1}s`; // Slightly faster staggered delay
-        });
+//         // Apply initial styles for off-screen positioning
+//         elementsToAnimate.forEach((element, index) => {
+//             element.style.opacity = '0';
+//             element.style.transform = 'translateX(-100px)';
+//             element.style.transition = `opacity 0.8s ease, transform 0.8s ease`;
+//             element.style.transitionDelay = `${index * 0.1}s`; // Staggered delay
+//         });
         
-        // Create a variable to track last scroll position
-        let lastScrollTop = 0;
+//         // Set up Intersection Observer for the section
+//         const observer = new IntersectionObserver((entries) => {
+//             entries.forEach(entry => {
+//                 // Only process if the section is coming into view and hasn't been animated yet
+//                 if (entry.isIntersecting && !animatedSections.has(section.id)) {
+//                     // Section coming into view for the first time
+//                     elementsToAnimate.forEach(element => {
+//                         element.style.opacity = '1';
+//                         element.style.transform = 'translateX(0)';
+//                     });
+                    
+//                     // Mark this section as animated
+//                     animatedSections.add(section.id);
+                    
+//                     // Stop observing this section
+//                     observer.unobserve(section);
+//                 }
+//             });
+//         }, { threshold: 0.15 }); // Trigger when 15% of the section is visible
         
-        // Set up Intersection Observer for the section
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // Get current scroll position
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                // Determine scroll direction
-                const scrollingDown = scrollTop > lastScrollTop;
-                lastScrollTop = scrollTop;
-                
-                if (entry.isIntersecting && scrollingDown) {
-                    // Section coming into view while scrolling down
-                    elementsToAnimate.forEach(element => {
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateX(0)';
-                    });
-                } else if (!entry.isIntersecting && !scrollingDown) {
-                    // Section going out of view while scrolling up
-                    elementsToAnimate.forEach(element => {
-                        element.style.opacity = '0';
-                        element.style.transform = 'translateX(-100px)';
-                    });
-                }
-            });
-        }, { threshold: 0.15 }); // Trigger when 15% of the section is visible
+//         // Start observing the section
+//         observer.observe(section);
         
-        // Start observing the section
-        observer.observe(section);
-        
-        // Handle initial state if already in view on page load
-        if (isInViewport(section)) {
-            elementsToAnimate.forEach(element => {
-                element.style.opacity = '1';
-                element.style.transform = 'translateX(0)';
-            });
-        }
-    });
-});
+//         // Handle initial state if already in view on page load
+//         if (isInViewport(section)) {
+//             elementsToAnimate.forEach(element => {
+//                 element.style.opacity = '1';
+//                 element.style.transform = 'translateX(0)';
+//             });
+            
+//             // Mark as animated and stop observing
+//             animatedSections.add(section.id);
+//             observer.unobserve(section);
+//         }
+//     });
+// });
 
-// Helper function to check if element is in viewport (unchanged)
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
+// // Helper function to check if element is in viewport
+// function isInViewport(element) {
+//     const rect = element.getBoundingClientRect();
+//     return (
+//         rect.top >= 0 &&
+//         rect.left >= 0 &&
+//         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+//         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+//     );
+// }
 
 
 
@@ -939,3 +974,321 @@ document.addEventListener("DOMContentLoaded", () => {
   
 
 
+
+
+
+
+
+
+
+
+  // Add this code to your existing scripts.js file
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the milli-link element
+    const milliLink = document.querySelector('.milli-link');
+    
+    if (milliLink) {
+      // Create a container for the link
+      const container = document.createElement('div');
+      container.className = 'milli-link-container';
+      
+      // Create the animated blue box
+      const blueBox = document.createElement('div');
+      blueBox.className = 'blue-box-animation';
+      
+      // Get the parent of the milli-link
+      const parent = milliLink.parentNode;
+      
+      // Insert the container before the link
+      parent.insertBefore(container, milliLink);
+      
+      // Move the link into the container
+      container.appendChild(milliLink);
+      
+      // Add the blue box to the container
+      container.appendChild(blueBox);
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Photo Modal/Lightbox functionality
+function openPhotoModal(photoItem) {
+    const modal = document.getElementById('photoModal');
+    const modalImg = document.getElementById('modalImage');
+    const img = photoItem.querySelector('img');
+    
+    // Set the image source to the clicked image
+    modalImg.src = img.src;
+    
+    // Show the modal with animation
+    modal.style.display = 'flex';
+    
+    // Use setTimeout to allow CSS transition to work
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
+    
+    // Prevent scrolling on body
+    document.body.style.overflow = 'hidden';
+}
+
+// Close the modal when clicking the × button
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('photoModal');
+    const closeBtn = document.querySelector('.close-photo-modal');
+    
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', function() {
+            closePhotoModal();
+        });
+        
+        // Close the modal when clicking outside the image
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closePhotoModal();
+            }
+        });
+        
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.classList.contains('show')) {
+                closePhotoModal();
+            }
+        });
+    }
+});
+
+function closePhotoModal() {
+    const modal = document.getElementById('photoModal');
+    
+    // Remove the show class to trigger the fade-out animation
+    modal.classList.remove('show');
+    
+    // Wait for the animation to complete before hiding
+    setTimeout(() => {
+        modal.style.display = 'none';
+        // Restore scrolling on the body
+        document.body.style.overflow = 'auto';
+    }, 300); // Match to the CSS transition duration
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Photography page specific JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Variables
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const modal = document.getElementById('photoModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeBtn = document.querySelector('.close-photo-modal');
+    const prevBtn = document.querySelector('.modal-prev-btn');
+    const nextBtn = document.querySelector('.modal-next-btn');
+    
+    let currentIndex = 0;
+    let filteredItems = [...galleryItems]; // Start with all items
+    
+    // Initialize gallery with animation on load
+    function initGallery() {
+        galleryItems.forEach((item, index) => {
+            // Add staggered animation on page load
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, 50 * index);
+            
+            // Add click event for opening modal
+            item.addEventListener('click', function() {
+                openModal(this);
+            });
+        });
+    }
+    
+    // Apply initial styles for animation
+    galleryItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    });
+    
+    // Initialize gallery after a short delay
+    setTimeout(initGallery, 100);
+    
+    // Filter gallery based on category
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Update active button
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const category = this.getAttribute('data-category');
+            
+            // Filter items
+            if (category === 'all') {
+                // Show all items
+                filteredItems = [...galleryItems];
+                galleryItems.forEach(item => {
+                    item.style.display = 'block';
+                    // Animate items back in
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 50);
+                });
+                
+                // Show all sections
+                document.querySelectorAll('.gallery-section').forEach(section => {
+                    section.style.display = 'block';
+                });
+            } else {
+                // Hide all items first
+                galleryItems.forEach(item => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                });
+                
+                // Show sections relevant to the selected category
+                document.querySelectorAll('.gallery-section').forEach(section => {
+                    if (section.classList.contains(category + '-section')) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+                
+                // After a short delay, show matching items
+                setTimeout(() => {
+                    filteredItems = [];
+                    galleryItems.forEach(item => {
+                        if (item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                            filteredItems.push(item);
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                }, 300);
+            }
+        });
+    });
+    
+    // Open the modal with selected image
+    function openModal(item) {
+        const img = item.querySelector('img');
+        modalImg.src = img.src;
+        
+        // Calculate current index in filtered items for navigation
+        currentIndex = filteredItems.indexOf(item);
+        
+        // Show the modal
+        modal.style.display = 'flex';
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 10);
+        
+        // Prevent scrolling on the body
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Close the modal
+    closeBtn.addEventListener('click', closeModal);
+    
+    // Close when clicking outside the image
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Close modal function
+    function closeModal() {
+        modal.classList.remove('show');
+        
+        // Wait for animation to complete before hiding
+        setTimeout(() => {
+            modal.style.display = 'none';
+            
+            // Restore scrolling on the body
+            document.body.style.overflow = 'auto';
+        }, 300);
+    }
+    
+    // Navigate to previous image
+    prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navigateImage(-1);
+    });
+    
+    // Navigate to next image
+    nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navigateImage(1);
+    });
+    
+    // Handle keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        if (modal.classList.contains('show')) {
+            if (event.key === 'Escape') {
+                closeModal();
+            } else if (event.key === 'ArrowLeft') {
+                navigateImage(-1);
+            } else if (event.key === 'ArrowRight') {
+                navigateImage(1);
+            }
+        }
+    });
+    
+    // Navigate between images
+    function navigateImage(direction) {
+        currentIndex += direction;
+        
+        // Loop back to the start or end if needed
+        if (currentIndex >= filteredItems.length) {
+            currentIndex = 0;
+        } else if (currentIndex < 0) {
+            currentIndex = filteredItems.length - 1;
+        }
+        
+        // Update modal with new image
+        const newImg = filteredItems[currentIndex].querySelector('img');
+        
+        // Animate the image change
+        modalImg.style.opacity = '0';
+        setTimeout(() => {
+            modalImg.src = newImg.src;
+            modalImg.style.opacity = '1';
+        }, 200);
+    }
+    
+    // Add transition for modal image
+    modalImg.style.transition = 'opacity 0.2s ease';
+});
