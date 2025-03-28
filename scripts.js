@@ -1307,5 +1307,120 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+// JavaScript for Meet The Creator Section Animations
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize skill progress bars
+    initSkillBars();
+    
+    // Initialize scroll animations
+    initScrollAnimations();
+    
+    // Add particle effects to background
+    createParticles();
+});
+
+// Initialize skill progress bars with animation
+function initSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    skillBars.forEach(bar => {
+        const percent = bar.getAttribute('data-percent');
+        
+        // Use timeout to ensure the animation starts after page load
+        setTimeout(() => {
+            bar.style.width = percent + '%';
+        }, 500);
+    });
+}
+
+// Handle scroll-based animations
+function initScrollAnimations() {
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    
+    // Initial check on load
+    checkVisibility(animateElements);
+    
+    // Check on scroll
+    window.addEventListener('scroll', () => {
+        checkVisibility(animateElements);
+    });
+}
+
+// Check if elements are visible in viewport
+function checkVisibility(elements) {
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+            element.classList.add('visible');
+        }
+    });
+}
+
+// Create dynamic particles in the background
+function createParticles() {
+    const particlesContainer = document.querySelector('.creator-bg-particles');
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+        createParticle(particlesContainer);
+    }
+}
+
+// Create individual particle
+function createParticle(container) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    
+    // Random size
+    const size = Math.random() * 4 + 1;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    // Random position
+    const xPos = Math.random() * 100;
+    const yPos = Math.random() * 100;
+    particle.style.left = `${xPos}%`;
+    particle.style.top = `${yPos}%`;
+    
+    // Random opacity
+    particle.style.opacity = Math.random() * 0.5 + 0.1;
+    
+    // Random animation duration
+    const duration = Math.random() * 15 + 10;
+    particle.style.animation = `floatParticle ${duration}s infinite ease-in-out`;
+    
+    // Random animation delay
+    const delay = Math.random() * 5;
+    particle.style.animationDelay = `${delay}s`;
+    
+    // Add to container
+    container.appendChild(particle);
+}
 
 
+// Add CSS particle styles dynamically
+function addParticleStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        @keyframes floatParticle {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(calc(20px + 5%), calc(-30px - 10%)); }
+            50% { transform: translate(calc(40px + 20%), 0); }
+            75% { transform: translate(calc(20px + 5%), calc(30px + 10%)); }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Call to add particle styles
+addParticleStyles();
