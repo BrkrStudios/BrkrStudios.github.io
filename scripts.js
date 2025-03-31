@@ -1306,15 +1306,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-// JavaScript for Meet The Creator Section Animations
-
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize skill progress bars
     initSkillBars();
     
-    // Initialize scroll animations
-    initScrollAnimations();
+    // Make all elements visible immediately
+    makeAllVisible();
     
     // Add particle effects to background
     createParticles();
@@ -1327,35 +1324,21 @@ function initSkillBars() {
     skillBars.forEach(bar => {
         const percent = bar.getAttribute('data-percent');
         
-        // Use timeout to ensure the animation starts after page load
-        setTimeout(() => {
-            bar.style.width = percent + '%';
-        }, 500);
+        // Apply width immediately
+        bar.style.width = percent + '%';
     });
 }
 
-// Handle scroll-based animations
-function initScrollAnimations() {
+// Make all elements visible without scroll animation
+function makeAllVisible() {
     const animateElements = document.querySelectorAll('.animate-on-scroll');
     
-    // Initial check on load
-    checkVisibility(animateElements);
-    
-    // Check on scroll
-    window.addEventListener('scroll', () => {
-        checkVisibility(animateElements);
-    });
-}
-
-// Check if elements are visible in viewport
-function checkVisibility(elements) {
-    elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
+    animateElements.forEach(element => {
+        // Add visible class immediately
+        element.classList.add('visible');
         
-        if (elementTop < window.innerHeight - elementVisible) {
-            element.classList.add('visible');
-        }
+        // Remove the animate-on-scroll class to prevent any scroll animations
+        element.classList.remove('animate-on-scroll');
     });
 }
 
@@ -1400,7 +1383,6 @@ function createParticle(container) {
     container.appendChild(particle);
 }
 
-
 // Add CSS particle styles dynamically
 function addParticleStyles() {
     const style = document.createElement('style');
@@ -1417,6 +1399,13 @@ function addParticleStyles() {
             25% { transform: translate(calc(20px + 5%), calc(-30px - 10%)); }
             50% { transform: translate(calc(40px + 20%), 0); }
             75% { transform: translate(calc(20px + 5%), calc(30px + 10%)); }
+        }
+        
+        /* Make sure all animate-on-scroll elements are visible by default */
+        .animate-on-scroll {
+            opacity: 1 !important;
+            transform: none !important;
+            visibility: visible !important;
         }
     `;
     document.head.appendChild(style);
