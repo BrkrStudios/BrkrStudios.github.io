@@ -602,6 +602,39 @@ a {
 }
 
 
+/* Extended Me Section Styles */
+.extended-sections {
+    background-color: #000;
+    color: #fff;
+}
+
+.me-subsection {
+    padding: 120px 20px;
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.me-subsection h2 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+}
+
+.me-subsection h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100px;
+    height: 4px;
+    background: #4070F4;
+    border-radius: 2px;
+}
 
 
 
