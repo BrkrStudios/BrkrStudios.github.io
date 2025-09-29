@@ -33,7 +33,7 @@ img {
 /* Basic link styling */
 a {
     text-decoration: none;
-    color: inherit; /* Inherits the color to match surrounding text */
+    color: inherit; 
 }
 
 /* Top Right Contact Button */
@@ -124,9 +124,8 @@ a {
 }
 
 /* Button Style */
-/* Button Style - Updated with better spacing */
 .navbar .btnLogin-popup {
-    width: 150px; /* Increased from 130px for more room */
+    width: 150px; 
     height: 50px;
     background: transparent;
     border: 2px solid #fff;
@@ -136,8 +135,8 @@ a {
     font-size: 1.1rem;
     color: #fff;
     font-weight: 500;
-    padding: 0 35px; /* Added horizontal padding inside the button */
-    margin-left: 20px; /* Added spacing to separate from the last menu item */
+    padding: 0 35px;
+    margin-left: 20px; 
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -671,13 +670,13 @@ a {
     border-radius: 15px;
     overflow: hidden; /* Important for containing overlay */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative; /* Crucial for absolute positioning of the overlay */
+    position: relative; 
     display: flex;
     flex-direction: column;
 }
 
 .portfolio-item:hover {
-    transform: translateY(-5px); /* Slightly less lift on hover */
+    transform: translateY(-5px); 
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     /* The overlay is shown via direct child selector below */
 }
@@ -687,7 +686,7 @@ a {
     height: 250px;
     object-fit: cover;
     display: block;
-    transition: opacity 0.3s ease; /* Optional: fade image slightly on hover */
+    transition: opacity 0.3s ease;
 }
 
 /* Optional: Slightly dim image when overlay appears */
@@ -794,7 +793,7 @@ a {
     color: #80b3ff;
 }
 
-/* Section styling (mostly unchanged) */
+
 #portfolio-section {
     padding: 60px 20px;
     background-color: #1a1a1a;
@@ -1104,14 +1103,14 @@ a {
     position: relative;
     background-color: #000;
     color: #fff;
-    padding: 120px 20px; /* Reduced padding from 320px to 120px */
+    padding: 120px 20px; 
     text-align: center;
     min-height: 100vh;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Added to center content vertically */
+    justify-content: center; 
 }
 
 .about-container {
